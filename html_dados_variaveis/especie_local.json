@@ -1,0 +1,36 @@
+[
+    {
+      "id": 1,
+      "nomePopular": "Urundeira (Aroeira)",
+      "nomeCientifico": "Myracrodruon urundeuva",
+      "imagem": "Figura-22-Myracrodruon-urundeuva-A-aspecto-geral-da-arvore-B-detalhe-do-ramo.png",
+      "local": "Assis Chateaubriand",
+      "frutificacao": "",
+      "floracao": "Junho - Julho",
+      "alturaMedia": "24m",
+      "descricaoCompleta": ""
+    },
+    {
+      "id": 2,
+      "nomePopular": "Tapiriri (Jobo, Tapirirá)",
+      "nomeCientifico": "Tapirira guianensis",
+      "imagem": "7fa22c6206aceb4240a0b17e14bdd030.jpg",
+      "local": "Assis Chateaubriand",
+      "frutificacao": "",
+      "floracao": "",
+      "alturaMedia": "",
+      "descricaoCompleta": ""
+    },
+    {
+      "id": 3,
+      "nomePopular": "Peroba-poca (Peroba-iquira)",
+      "nomeCientifico": "Aspidosperma cylindrocarpo",
+      "imagem": "b-31.jpg",
+      "local": "Assis Chateaubriand",
+      "frutificacao": "",
+      "floracao": "",
+      "alturaMedia": "",
+      "descricaoCompleta": ""
+    }
+  ]
+  
