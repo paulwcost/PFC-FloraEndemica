@@ -1,5 +1,8 @@
 const express = require('express');
-const Colaborador = require('./models/colaborador');
+
+
+const Colaborador = require('../models/colaborador');
+
 const router = express.Router();
 
 // GET /colaboradores - Retorna todos os colaboradores

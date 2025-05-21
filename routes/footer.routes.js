@@ -1,5 +1,5 @@
 const express = require('express');
-const Footer = require('./models/footer');
+const Footer = require('../models/footer');
 const router = express.Router();
 
 // GET /footer - Retorna os dados do footer

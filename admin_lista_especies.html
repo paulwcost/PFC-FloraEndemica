@@ -1,3 +1,4 @@
+<!-- admin_lista_especies.html -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -5,6 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Espécies - Plataforma de Dados</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+      /* Estilos adicionais para a tabela */
+      table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 20px;
+      }
+      th, td {
+          border: 1px solid #ddd;
+          padding: 8px;
+          text-align: left;
+      }
+      th {
+          background-color: #f2f2f2;
+      }
+      .botao-acao {
+          padding: 5px 10px;
+          margin: 5px;
+          border: none;
+          color: white;
+          cursor: pointer;
+          border-radius: 5px;
+      }
+      .botao-editar {
+          background-color: #4CAF50; /* Verde */
+      }
+      .botao-excluir {
+          background-color: #f44336; /* Vermelho */
+      }
+    </style>
 </head>
 <body>
 
@@ -32,27 +63,14 @@
                     <th>ID</th>
                     <th>Nome Popular</th>
                     <th>Nome Científico</th>
+                    <th>Descrição</th>
+                    <th>Familia</th>
+                    <th>Status de Conservação</th>
                     <th>Ações</th>
                 </tr>
             </thead>
-            <tbody>
-
-                <table>
-                    <thead>
-                        <tr>
-                        <th>Nome Popular</th>
-                        <th>Nome Científico</th>
-                        <th>Família</th>
-                        <th>Status de Conservação</th>
-                        <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tabela-especies">
-                        <!-- JS insere os dados aqui -->
-                    </tbody>
-                </table>
-
-
+            <tbody id="tabela-especies">
+                <!-- JS insere os dados aqui -->
             </tbody>
         </table>
     </section>

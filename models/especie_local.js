@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
 
 const especieLocalSchema = new mongoose.Schema({
-    nomeCientifico: String,
-    nomePopular: String,
+    nome_popular: String,
+    nome_cientifico: String,
+    familia: String,
     descricao: String,
-    habitat: String,
+    status_conservacao: String,
+
     // Adicione outros campos conforme a estrutura do seu especie_local.json
 });
 

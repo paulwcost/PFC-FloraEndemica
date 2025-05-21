@@ -1,5 +1,5 @@
 const express = require('express');
-const Header = require('./models/header');
+const Header = require('../models/header');
 const router = express.Router();
 
 // GET /header - Retorna os dados do cabeçalho

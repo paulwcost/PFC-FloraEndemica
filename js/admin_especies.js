@@ -1,4 +1,4 @@
-// js/admin_especies.js
+
 
 async function carregarEspecies() {
     try {
@@ -24,6 +24,10 @@ function renderizarEspecies(especies) {
             <td>${especie._id}</td>
             <td>${especie.nome_popular}</td>
             <td>${especie.nome_cientifico}</td>
+            <td>${especie.descricao}</td>
+            <td>${especie.familia}</td>
+            <td>${especie.status_conservacao}</td>
+
             <td>
                 <button onclick="editarEspecie('${especie._id}')">Editar</button>
                 <button onclick="excluirEspecie('${especie._id}')">Excluir</button>
@@ -34,6 +38,11 @@ function renderizarEspecies(especies) {
 }
 
 function editarEspecie(id) {
+
+    if (id>0) {
+        alert("ID inválido para edição.");
+        return;
+    } 
     localStorage.setItem('idEspecieEditando', id);
     window.location.href = 'admin_form_especie.html';
 }

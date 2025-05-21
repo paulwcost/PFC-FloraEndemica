@@ -1,3 +1,4 @@
+<!-- admin_form_especie.html -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -27,6 +28,10 @@
         <h1>Cadastro de Espécie</h1>
 
        <form id="formCadastroEspecie">
+
+
+        <input type="hidden" id="id" name="id" value="">
+
             <label for="nome_popular">Nome Popular:</label>
             <input type="text" id="nome_popular" name="nome_popular" required>
 
@@ -34,9 +39,14 @@
             <input type="text" id="nome_cientifico" name="nome_cientifico" required>
 
             <label for="descricao">Descrição:</label>
-            <textarea id="descricao" name="descricao"></textarea>
+            <textarea id="descricao" name="descricao" name="descricao"></textarea>
 
-            <!-- Adicione outros campos do formulário aqui -->
+            <label for="familia">Família:</label>
+            <input type="text" id="familia" name="familia">
+
+            <label for="status_conservacao">Status de Conservação:</label>
+            <input type="text" id="status_conservacao" name="status_conservacao">
+
 
             <button type="submit">Cadastrar</button>
         </form>

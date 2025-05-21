@@ -1,5 +1,5 @@
 const express = require('express');
-const Metodologia = require('./models/metodologia');
+const Metodologia = require('../models/metodologia');
 const router = express.Router();
 
 // GET /metodologia - Retorna os dados da metodologia

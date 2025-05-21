@@ -1,10 +1,11 @@
-// js/admin_form_especie.js
-
 const formCadastro = document.getElementById('formCadastroEspecie');
 const idEspecieEditando = localStorage.getItem('idEspecieEditando');
+alert(idEspecieEditando);
 
 if (idEspecieEditando) {
     preencherFormularioParaEdicao(idEspecieEditando);
+} else{
+    alert("Nenhum ID de espécie encontrado para edição.");
 }
 
 async function preencherFormularioParaEdicao(id) {
@@ -14,9 +15,15 @@ async function preencherFormularioParaEdicao(id) {
 
         const especie = await response.json();
 
+        document.getElementById('id').value = especie._id || '';
         document.getElementById('nome_popular').value = especie.nome_popular || '';
         document.getElementById('nome_cientifico').value = especie.nome_cientifico || '';
         document.getElementById('descricao').value = especie.descricao || '';
+        document.getElementById('familia').value = especie.familia || '';
+        document.getElementById('status_conservacao').value = especie.status_conservacao || '';
+
+
+
     } catch (error) {
         console.error('Erro ao carregar dados:', error);
         alert("Erro ao carregar dados da espécie.");
@@ -29,9 +36,11 @@ formCadastro.addEventListener('submit', async function (event) {
     const formData = new FormData(formCadastro);
     const dadosEspecie = Object.fromEntries(formData.entries());
 
-    const metodo = idEspecieEditando ? 'PUT' : 'POST';
-    const url = idEspecieEditando
-        ? `http://localhost:3000/especies-locais/${idEspecieEditando}`
+    alert("Dados da espécie: " + JSON.stringify(dadosEspecie));
+
+    const metodo = dadosEspecie.id ? 'PUT' : 'POST';
+    const url = dadosEspecie.id
+        ? `http://localhost:3000/especies-locais/${dadosEspecie.id}`
         : 'http://localhost:3000/especies-locais';
 
     try {
@@ -46,7 +55,7 @@ formCadastro.addEventListener('submit', async function (event) {
             throw new Error(`Erro ${response.status}: ${errorData.message || 'Erro desconhecido'}`);
         }
 
-        alert(idEspecieEditando ? "Espécie atualizada com sucesso!" : "Espécie cadastrada com sucesso!");
+        alert(idEspecieEditando>0 ? "Espécie atualizada com sucesso!" : "Espécie cadastrada com sucesso!");
         localStorage.removeItem('idEspecieEditando');
         formCadastro.reset();
         window.location.href = "admin_lista_especies.html";

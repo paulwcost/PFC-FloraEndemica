@@ -1,5 +1,5 @@
 const express = require('express');
-const EspecieLocal = require('./models/especie_local');
+const EspecieLocal = require('../models/especie_local');
 const router = express.Router();
 
 // GET /especies-locais - Retorna todas as espécies locais
@@ -17,7 +17,7 @@ router.get('/:id', async (req, res) => {
     try {
         const especieLocal = await EspecieLocal.findById(req.params.id);
         if (!especieLocal) {
-            return res.status(404).json({ message: 'Espécie local não encontrada' });
+            return res.status(404).json({ message: 'Espécie local não encontrada no GET por ID' });
         }
         res.json(especieLocal);
     } catch (err) {
@@ -41,7 +41,7 @@ router.put('/:id', async (req, res) => {
     try {
         const especieLocal = await EspecieLocal.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!especieLocal) {
-            return res.status(404).json({ message: 'Espécie local não encontrada' });
+            return res.status(404).json({ message: 'Espécie local não encontrada no PUT por ID' });
         }
         res.json(especieLocal);
     } catch (err) {
@@ -54,7 +54,7 @@ router.delete('/:id', async (req, res) => {
     try {
         const especieLocal = await EspecieLocal.findByIdAndDelete(req.params.id);
         if (!especieLocal) {
-            return res.status(404).json({ message: 'Espécie local não encontrada' });
+            return res.status(404).json({ message: 'Espécie local não encontrada ao DELETAR por ID' });
         }
         res.json({ message: 'Espécie local deletada com sucesso' });
     } catch (err) {
