@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário de Espécie - Plataforma de Dados</title>
+    <title>Cadastro de Espécie - Plataforma de Dados</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -24,57 +24,29 @@
     </header>
 
     <section class="container">
-        <h1>Cadastrar/Editar Espécie</h1>
-        <form>
-            <label for="nomePopular">Nome Popular</label>
-            <input type="text" id="nomePopular" name="nomePopular" required>
+        <h1>Cadastro de Espécie</h1>
 
-            <label for="nomeCientifico">Nome Científico</label>
-            <input type="text" id="nomeCientifico" name="nomeCientifico" required>
+       <form id="formCadastroEspecie">
+            <label for="nome_popular">Nome Popular:</label>
+            <input type="text" id="nome_popular" name="nome_popular" required>
 
-            <label for="familia">Família Botânica</label>
-            <input type="text" id="familia" name="familia">
+            <label for="nome_cientifico">Nome Científico:</label>
+            <input type="text" id="nome_cientifico" name="nome_cientifico" required>
 
-            <label for="nomeRegional">Nomes Regionais / Outros Nomes</label>
-            <input type="text" id="nomeRegional" name="nomeRegional">
+            <label for="descricao">Descrição:</label>
+            <textarea id="descricao" name="descricao"></textarea>
 
-            <label for="alturaMedia">Altura Média (m)</label>
-            <input type="text" id="alturaMedia" name="alturaMedia">
+            <!-- Adicione outros campos do formulário aqui -->
 
-            <label for="floracao">Época de Floração</label>
-            <input type="text" id="floracao" name="floracao">
-
-            <label for="frutificacao">Época de Frutificação</label>
-            <input type="text" id="frutificacao" name="frutificacao">
-
-            <label for="habitat">Habitat Natural</label>
-            <input type="text" id="habitat" name="habitat">
-
-            <label for="distribuicao">Distribuição Geográfica</label>
-            <input type="text" id="distribuicao" name="distribuicao">
-
-            <label for="conservacao">Status de Conservação</label>
-            <select id="conservacao" name="conservacao">
-                <option value="">Selecione</option>
-                <option value="quase-ameacada">Quase Ameaçada</option>
-                <option value="em-perigo">Em Perigo</option>
-                <option value="extinta-na-natureza">Extinta na Natureza</option>
-                <option value="extinta">Extinta</option>
-            </select>
-
-            <label for="imagem">Imagem</label>
-            <input type="file" id="imagem" name="imagem">
-
-            <label for="descricao">Descrição Geral</label>
-            <textarea id="descricao" name="descricao" rows="5"></textarea>
-
-            <button type="submit">Salvar</button>
+            <button type="submit">Cadastrar</button>
         </form>
     </section>
 
     <footer>
-        <p>&copy; 2025 Plataforma de Dados - Espécies Nativas</p>
+        <p>© 2025 Plataforma de Dados - Espécies Nativas</p>
     </footer>
+
+    <script src="js/admin_form_especie.js"></script>
 
 </body>
 </html>

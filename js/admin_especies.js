@@ -1,0 +1,62 @@
+// js/admin_especies.js
+
+async function carregarEspecies() {
+    try {
+        const response = await fetch('http://localhost:3000/especies-locais');
+        if (!response.ok) {
+            throw new Error(`Erro HTTP: ${response.status}`);
+        }
+        const especies = await response.json();
+        renderizarEspecies(especies);
+    } catch (error) {
+        console.error('Erro ao buscar espécies:', error);
+        document.getElementById('tabela-especies').innerHTML = '<tr><td colspan="4">Erro ao carregar espécies.</td></tr>';
+    }
+}
+
+function renderizarEspecies(especies) {
+    const tabela = document.getElementById('tabela-especies');
+    tabela.innerHTML = '';
+
+    especies.forEach(especie => {
+        const linha = document.createElement('tr');
+        linha.innerHTML = `
+            <td>${especie._id}</td>
+            <td>${especie.nome_popular}</td>
+            <td>${especie.nome_cientifico}</td>
+            <td>
+                <button onclick="editarEspecie('${especie._id}')">Editar</button>
+                <button onclick="excluirEspecie('${especie._id}')">Excluir</button>
+            </td>
+        `;
+        tabela.appendChild(linha);
+    });
+}
+
+function editarEspecie(id) {
+    localStorage.setItem('idEspecieEditando', id);
+    window.location.href = 'admin_form_especie.html';
+}
+
+async function excluirEspecie(id) {
+    const confirmacao = confirm("Tem certeza que deseja excluir esta espécie?");
+    if (!confirmacao) return;
+
+    try {
+        const response = await fetch(`http://localhost:3000/especies-locais/${id}`, {
+            method: 'DELETE'
+        });
+
+        if (!response.ok) {
+            throw new Error(`Erro ao excluir: ${response.status}`);
+        }
+
+        alert("Espécie excluída com sucesso!");
+        carregarEspecies();
+    } catch (error) {
+        console.error('Erro ao excluir espécie:', error);
+        alert(`Erro: ${error.message}`);
+    }
+}
+
+window.addEventListener('DOMContentLoaded', carregarEspecies);

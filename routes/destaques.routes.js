@@ -1,5 +1,5 @@
 const express = require('express');
-const Destaque = require('../models/destaque');
+const Destaque = require('./models/destaque');
 const router = express.Router();
 
 // GET /destaques - Retorna todos os destaques

@@ -1,5 +1,5 @@
 const express = require('express');
-const EspecieLocal = require('../models/especie_local');
+const EspecieLocal = require('./models/especie_local');
 const router = express.Router();
 
 // GET /especies-locais - Retorna todas as espécies locais

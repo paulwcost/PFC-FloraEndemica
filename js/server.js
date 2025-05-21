@@ -13,13 +13,15 @@ app.use(cors());
 app.use(express.json()); // Para o Express entender dados JSON nas requisições
 
 // Importar as rotas
-const bannerRoutes = require('../routes/banner.routes');
-const colaboradorRoutes = require('../routes/colaborador.routes');
-const destaqueRoutes = require('../routes/destaques.routes');
-const especieLocalRoutes = require('../routes/especie_local.routes');
-const footerRoutes = require('../routes/footer.routes');
-const headerRoutes = require('../routes/header.routes');
-const metodologiaRoutes = require('../routes/metodologia.routes');
+// js/server.js
+
+const bannerRoutes = require('./routes/banner.routes.');
+const colaboradorRoutes = require('./routes/colaborador.routes');
+const destaqueRoutes = require('./routes/destaques.routes');
+const especieLocalRoutes = require('./routes/especie_local.routes');
+const footerRoutes = require('./routes/footer.routes');
+const headerRoutes = require('./routes/header.routes');
+const metodologiaRoutes = require('./routes/metodologia.routes');
 
 // Usar as rotas
 app.use('/banner', bannerRoutes);

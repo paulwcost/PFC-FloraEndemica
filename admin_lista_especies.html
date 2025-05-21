@@ -36,23 +36,32 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>01</td>
-                    <td>Ipê Amarelo</td>
-                    <td>Handroanthus albus</td>
-                    <td>
-                        <a href="admin_form_especie.html" class="btn-editar">Editar</a>
-                        <button class="btn-excluir">Excluir</button>
-                    </td>
-                </tr>
-                <!-- Adicione mais espécies conforme necessário -->
+
+                <table>
+                    <thead>
+                        <tr>
+                        <th>Nome Popular</th>
+                        <th>Nome Científico</th>
+                        <th>Família</th>
+                        <th>Status de Conservação</th>
+                        <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabela-especies">
+                        <!-- JS insere os dados aqui -->
+                    </tbody>
+                </table>
+
+
             </tbody>
         </table>
     </section>
 
     <footer>
-        <p>&copy; 2025 Plataforma de Dados - Espécies Nativas</p>
+        <p>© 2025 Plataforma de Dados - Espécies Nativas</p>
     </footer>
+
+    <script src="js/admin_especies.js"></script>
 
 </body>
 </html>
