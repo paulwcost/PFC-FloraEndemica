@@ -1,8 +1,10 @@
-
-
 async function carregarEspecies() {
     try {
-        const response = await fetch('http://localhost:3000/especies-locais');
+        const response = await fetch('https://plataforma-de-dados-com-login.onrender.com/especies-locais', {
+            headers: {
+                'Authorization': 'Bearer ' + (getAuthToken ? getAuthToken() : localStorage.getItem('authToken'))
+            }
+        });
         if (!response.ok) {
             throw new Error(`Erro HTTP: ${response.status}`);
         }
@@ -10,7 +12,10 @@ async function carregarEspecies() {
         renderizarEspecies(especies);
     } catch (error) {
         console.error('Erro ao buscar espécies:', error);
-        document.getElementById('tabela-especies').innerHTML = '<tr><td colspan="4">Erro ao carregar espécies.</td></tr>';
+        const tabela = document.getElementById('tabela-especies');
+        if (tabela) {
+            tabela.innerHTML = '<tr><td colspan="4">Erro ao carregar espécies. Verifique sua conexão ou se a API está online.</td></tr>';
+        }
     }
 }
 
@@ -52,9 +57,14 @@ async function excluirEspecie(id) {
     if (!confirmacao) return;
 
     try {
-        const response = await fetch(`http://localhost:3000/especies-locais/${id}`, {
-            method: 'DELETE'
-        });
+        const response = await fetch(`https://plataforma-de-dados-com-login.onrender.com/especies-locais/${id}`,
+            {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': 'Bearer ' + (getAuthToken ? getAuthToken() : localStorage.getItem('authToken'))
+                }
+            }
+        );
 
         if (!response.ok) {
             throw new Error(`Erro ao excluir: ${response.status}`);
@@ -64,7 +74,7 @@ async function excluirEspecie(id) {
         carregarEspecies();
     } catch (error) {
         console.error('Erro ao excluir espécie:', error);
-        alert(`Erro: ${error.message}`);
+        alert(`Erro: ${error.message}\nVerifique sua conexão ou se a API está online.`);
     }
 }
 

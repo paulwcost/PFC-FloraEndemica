@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Usuários - Plataforma de Dados</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+      table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+      th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+      th { background-color: #f2f2f2; }
+      .botao-acao { padding: 5px 10px; margin: 5px; border: none; color: white; cursor: pointer; border-radius: 5px; }
+      .botao-editar { background-color: #4CAF50; }
+      .botao-excluir { background-color: #f44336; }
+      .botao-adicionar { background-color: #2196F3; color: white; padding: 8px 16px; border: none; border-radius: 5px; margin-bottom: 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="./img/logo.png" alt="imagem_logo">
+            Plataforma de dados sobre espécies nativas
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="admin_login.html">Admin Login</a></li>
+                <li><a href="admin_form_especie.html">Cadastro de Espécie</a></li>
+                <li><a href="admin_lista_especies.html">Lista de Espécies</a></li>
+                <li><a href="admin_lista_usuarios.html">Usuários</a></li>
+                <li><a href="#" id="logout-link" style="display:none;">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="container">
+        <h1>Usuários</h1>
+        <button class="botao-adicionar" onclick="window.location.href='admin_form_usuario.html'">Adicionar Novo Usuário</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Usuário</th>
+                    <th>Papel</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="tabela-usuarios">
+                <tr><td colspan="4">Carregando...</td></tr>
+            </tbody>
+        </table>
+    </section>
+    <footer>
+        <p>&copy; 2025 Plataforma de Dados - Espécies Nativas</p>
+    </footer>
+    <script src="js/auth.js"></script>
+    <script>protegerRota();
+    if (getAuthToken()) {
+        document.getElementById('logout-link').style.display = 'inline';
+        document.getElementById('logout-link').onclick = function(e) { e.preventDefault(); logout(); };
+    }
+    </script>
+    <script src="js/admin_usuarios.js"></script>
+</body>
+</html>

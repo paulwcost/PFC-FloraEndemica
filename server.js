@@ -22,6 +22,8 @@ const especieLocalRoutes = require('./routes/especie_local.routes');
 const footerRoutes = require('./routes/footer.routes');
 const headerRoutes = require('./routes/header.routes');
 const metodologiaRoutes = require('./routes/metodologia.routes');
+const userRoutes = require('./routes/user.routes');
+const authRoutes = require('./routes/auth.routes');
 
 // Usar as rotas
 app.use('/banner', bannerRoutes);
@@ -31,6 +33,8 @@ app.use('/especies-locais', especieLocalRoutes);
 app.use('/footer', footerRoutes);
 app.use('/header', headerRoutes);
 app.use('/metodologia', metodologiaRoutes);
+app.use('/users', userRoutes);
+app.use('/auth', authRoutes);
 
 // Conexão com o MongoDB
 const mongoURI = process.env.MONGO_URI;
@@ -46,3 +50,6 @@ mongoose.connect(mongoURI, {
 app.listen(port, () => {
     console.log(`Servidor rodando na porta ${port}`);
 });
+
+
+

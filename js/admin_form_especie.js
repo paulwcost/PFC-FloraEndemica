@@ -10,7 +10,7 @@ if (idEspecieEditando) {
 
 async function preencherFormularioParaEdicao(id) {
     try {
-        const response = await fetch(`http://localhost:3000/especies-locais/${id}`);
+        const response = await fetch(`https://plataforma-de-dados-com-login.onrender.com/especies-locais/${id}`);
         if (!response.ok) throw new Error("Erro ao buscar dados.");
 
         const especie = await response.json();
@@ -40,13 +40,16 @@ formCadastro.addEventListener('submit', async function (event) {
 
     const metodo = dadosEspecie.id ? 'PUT' : 'POST';
     const url = dadosEspecie.id
-        ? `http://localhost:3000/especies-locais/${dadosEspecie.id}`
-        : 'http://localhost:3000/especies-locais';
+        ? `https://plataforma-de-dados-com-login.onrender.com/especies-locais/${dadosEspecie.id}`
+        : 'https://plataforma-de-dados-com-login.onrender.com/especies-locais';
 
     try {
         const response = await fetch(url, {
             method: metodo,
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + (getAuthToken ? getAuthToken() : localStorage.getItem('authToken'))
+            },
             body: JSON.stringify(dadosEspecie)
         });
 

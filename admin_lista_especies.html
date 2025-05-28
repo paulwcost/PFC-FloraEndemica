@@ -50,6 +50,7 @@
                 <li><a href="admin_login.html">Admin Login</a></li>
                 <li><a href="admin_form_especie.html">Cadastro de Espécie</a></li>
                 <li><a href="admin_lista_especies.html">Lista de Espécies</a></li>
+                <li><a href="#" id="logout-link" style="display:none;">Logout</a></li>
             </ul>
         </nav>
     </header>
@@ -79,6 +80,18 @@
         <p>© 2025 Plataforma de Dados - Espécies Nativas</p>
     </footer>
 
+    <script src="js/auth.js"></script>
+    <script>
+        protegerRota();
+        // Exibe o link de logout se autenticado
+        if (getAuthToken()) {
+            document.getElementById('logout-link').style.display = 'inline';
+            document.getElementById('logout-link').onclick = function(e) {
+                e.preventDefault();
+                logout();
+            };
+        }
+    </script>
     <script src="js/admin_especies.js"></script>
 
 </body>

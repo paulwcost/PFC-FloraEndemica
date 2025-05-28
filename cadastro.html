@@ -28,29 +28,30 @@
             <h1>Crie sua conta</h1>
             <p>Preencha as informações abaixo para se cadastrar e ter acesso ao catálogo completo das espécies nativas.</p>
             
-            <form action="cadastro.php" method="POST" class="cadastro-form">
+            <form id="cadastro-form" class="cadastro-form">
                 <label for="nome">Nome Completo:</label>
                 <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
 
                 <label for="email">E-mail:</label>
                 <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
 
-                <label for="usuario">Usuário:</label>
-                <input type="text" id="usuario" name="usuario" placeholder="Escolha um nome de usuário" required>
+                <label for="username">Usuário:</label>
+                <input type="text" id="username" name="username" placeholder="Escolha um nome de usuário" required>
 
-                <label for="senha">Senha:</label>
-                <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
 
                 <label for="confirmar-senha">Confirmar Senha:</label>
                 <input type="password" id="confirmar-senha" name="confirmar-senha" placeholder="Confirme sua senha" required>
 
-                <label for="tipo-usuario">Tipo de Cadastro:</label>
-                <select id="tipo-usuario" name="tipo-usuario" required>
+                <label for="role">Tipo de Cadastro:</label>
+                <select id="role" name="role" required>
                     <option value="visitante">Visitante Geral</option>
                     <option value="pesquisador">Pesquisador</option>
                 </select>
 
                 <button type="submit" class="botao">Cadastrar</button>
+                <div id="cadastro-erro" style="color: red; display: none; margin-top: 10px;"></div>
             </form>
 
             <p>Já tem uma conta? <a href="login.html">Faça login aqui</a>.</p>
@@ -60,5 +61,6 @@
     <footer>
         <p>&copy; 2025 Plataforma de Conservação - Todos os direitos reservados.</p>
     </footer>
+    <script src="js/cadastro.js"></script>
 </body>
 </html>
