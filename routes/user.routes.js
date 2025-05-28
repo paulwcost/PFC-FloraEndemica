@@ -7,9 +7,12 @@ const { protect } = require('../middleware/auth.middleware');
 // Criar novo usuário (não protegido para permitir criação inicial)
 router.post('/', async (req, res) => {
   try {
+
+    console.log('Dados recebidos:', req.body); // Log dos dados recebidos
     const { username, password, role, nome, email } = req.body;
     const user = new User({ username, password, role, nome, email });
     await user.save();
+    console.log('Usuário criado:', user); // Log do usuário criado
     res.status(201).json({ message: 'Usuário criado com sucesso!' });
   } catch (err) {
     if (err.code === 11000) {
