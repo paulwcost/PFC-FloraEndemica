@@ -1,0 +1,18 @@
+{
+    "titulo": "Seja um colaborador",
+    "descricao": "Contribua para a conservação e restauração da flora endêmica de Assis Chateaubriand!",
+    "categorias": [
+        {
+            "titulo": "1. Visitantes Gerais",
+            "descricao": "Acesso limitado a informações gerais sobre as espécies nativas de Chateaubriand.",
+            "link_texto": "Acessar Página para Visitantes",
+            "href": "pagina-visitante.html"
+        },
+        {
+            "titulo": "2. Pesquisadores e Cientistas",
+            "descricao": "Acesso completo às informações detalhadas sobre as espécies, incluindo possibilidade de cadastramento de novas espécies e atualização dos dados existentes.",
+            "link_texto": "Acessar Página para Pesquisadores",
+            "href": "pagina-pesquisadores.html"
+        }
+    ]
+}

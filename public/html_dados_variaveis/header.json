@@ -1,0 +1,34 @@
+{
+    "logo_url": "./img/logo.png",
+    "titulo_site": "Plataforma de dados sobre espécies nativas",
+    "menu_links": [
+        {
+            "texto": "Início",
+            "href": "index.html"
+        },
+        {
+            "texto": "Flora Brasil",
+            "href": "flora_brasil.html"
+        },
+        {
+            "texto": "Catálogo",
+            "href": "login.html"
+        },
+        {
+            "texto": "Metodologia",
+            "href": "metodologia.html"
+        },
+        {
+            "texto": "Contato",
+            "href": "contato.html"
+        },
+        {
+            "texto": "Sobre",
+            "href": "sobre.html"
+        },
+        {
+            "texto": "Admin Login",
+            "href": "admin_login.html"
+        }
+    ]
+}

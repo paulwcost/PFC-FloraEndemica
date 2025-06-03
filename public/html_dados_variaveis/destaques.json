@@ -1,0 +1,16 @@
+{
+    "cards": [
+        {
+            "titulo": "+100 Espécies Catalogadas",
+            "descricao": "Banco de dados atualizado com as principais árvores nativas."
+        },
+        {
+            "titulo": "Metodologia Científica",
+            "descricao": "Pesquisa baseada em dados confiáveis e estudos ambientais."
+        },
+        {
+            "titulo": "Conservação e Restauração",
+            "descricao": "Conheça as estratégias para proteger a flora endêmica."
+        }
+    ]
+}
