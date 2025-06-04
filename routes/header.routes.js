@@ -1,5 +1,6 @@
 const express = require('express');
 const Header = require('../models/header');
+const { protect } = require('../middleware/auth.middleware');
 const router = express.Router();
 
 // GET /header - Retorna os dados do cabeçalho
@@ -14,7 +15,7 @@ router.get('/', async (req, res) => {
 });
 
 // POST /header - Cria os dados do cabeçalho
-router.post('/', async (req, res) => {
+router.post('/', protect, async (req, res) => {
     const header = new Header(req.body);
     try {
         const newHeader = await header.save();
@@ -25,7 +26,7 @@ router.post('/', async (req, res) => {
 });
 
 // PUT /header/:id - Atualiza os dados do cabeçalho (pelo ID do documento, se necessário)
-router.put('/:id', async (req, res) => {
+router.put('/:id', protect, async (req, res) => {
     try {
         const header = await Header.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!header) {
@@ -38,7 +39,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // DELETE /header/:id - Deleta os dados do cabeçalho (cuidado com isso)
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', protect, async (req, res) => {
     try {
         const header = await Header.findByIdAndDelete(req.params.id);
         if (!header) {

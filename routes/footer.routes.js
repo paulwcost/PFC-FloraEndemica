@@ -1,5 +1,6 @@
 const express = require('express');
 const Footer = require('../models/footer');
+const { protect } = require('../middleware/auth.middleware');
 const router = express.Router();
 
 // GET /footer - Retorna os dados do footer
@@ -14,7 +15,7 @@ router.get('/', async (req, res) => {
 });
 
 // POST /footer - Cria os dados do footer
-router.post('/', async (req, res) => {
+router.post('/', protect, async (req, res) => {
     const footer = new Footer(req.body);
     try {
         const newFooter = await footer.save();
@@ -25,7 +26,7 @@ router.post('/', async (req, res) => {
 });
 
 // PUT /footer/:id - Atualiza os dados do footer (pelo ID do documento, se necessário)
-router.put('/:id', async (req, res) => {
+router.put('/:id', protect, async (req, res) => {
     try {
         const footer = await Footer.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!footer) {
@@ -38,7 +39,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // DELETE /footer/:id - Deleta os dados do footer (cuidado com isso)
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', protect, async (req, res) => {
     try {
         const footer = await Footer.findByIdAndDelete(req.params.id);
         if (!footer) {

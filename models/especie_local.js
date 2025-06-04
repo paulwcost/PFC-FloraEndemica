@@ -3,9 +3,10 @@ const mongoose = require('mongoose');
 const especieLocalSchema = new mongoose.Schema({
     nome_popular: String,
     nome_cientifico: String,
+    caracteristicas_morfologicas: String,
     familia: String,
-    descricao: String,
     status_conservacao: String,
+    descricao: String,
 
     // Adicione outros campos conforme a estrutura do seu especie_local.json
 });

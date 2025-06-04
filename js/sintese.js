@@ -1,46 +1,50 @@
 // Função que carrega o JSON e popula a tela com os dados das espécies
 async function carregarEspecies() {
   try {
-    const response = await fetch('./html_dados_variaveis/especie_local.json');
-    if (!response.ok) throw new Error('Erro ao carregar o arquivo JSON');
+    // Busca do backend Express/MongoDB
+    const response = await fetch('http://localhost:3000/especies-locais');
+    if (!response.ok) throw new Error('Erro ao carregar os dados do banco de dados');
 
-    const especies = await response.json(); // Parse do JSON
-    const container = document.querySelector('.grid-especies'); // Container das espécies
+    const especies = await response.json();
+    const container = document.querySelector('.grid-especies');
+    container.innerHTML = '';
 
     especies.forEach(especie => {
       // Criar div.quadro
       const quadro = document.createElement('div');
       quadro.classList.add('quadro');
 
-      // Criar imagem
-      const imagem = document.createElement('img');
-      imagem.src = `./img/${especie.imagem}`; // <-- Caminho ajustado para a pasta 'img'
-      imagem.alt = especie.nomePopular;
-
-      // Criar título (h3)
+      // Nome Popular
       const titulo = document.createElement('h3');
-      titulo.textContent = especie.nomePopular;
-
-      // Criar parágrafos
-      const nomeCientifico = document.createElement('p');
-      nomeCientifico.innerHTML = `<strong>Nome Científico:</strong> ${especie.nomeCientifico}`;
-
-      const floracao = document.createElement('p');
-      floracao.innerHTML = `<strong>Floração:</strong> ${especie.floracao || 'Não informado'}`;
-
-      const frutificacao = document.createElement('p');
-      frutificacao.innerHTML = `<strong>Frutificação:</strong> ${especie.frutificacao || 'Não informado'}`;
-
-      const altura = document.createElement('p');
-      altura.innerHTML = `<strong>Altura Média:</strong> ${especie.alturaMedia || 'Não informado'}`;
-
-      // Adicionar todos os elementos à div.quadro
-      quadro.appendChild(imagem);
+      titulo.textContent = especie.nome_popular || 'Sem nome popular';
       quadro.appendChild(titulo);
+
+      // Nome Científico
+      const nomeCientifico = document.createElement('p');
+      nomeCientifico.innerHTML = `<strong>Nome Científico:</strong> ${especie.nome_cientifico || 'Não informado'}`;
       quadro.appendChild(nomeCientifico);
-      quadro.appendChild(floracao);
-      quadro.appendChild(frutificacao);
-      quadro.appendChild(altura);
+
+      // Características Morfológicas
+      if (especie.caracteristicas_morfologicas) {
+        const caracteristicas = document.createElement('p');
+        caracteristicas.innerHTML = `<strong>Características Morfológicas:</strong> ${especie.caracteristicas_morfologicas}`;
+        quadro.appendChild(caracteristicas_morfologicas);
+      }
+
+      // Família
+      const familia = document.createElement('p');
+      familia.innerHTML = `<strong>Família:</strong> ${especie.familia || 'Não informado'}`;
+      quadro.appendChild(familia);
+
+      // Status de Conservação
+      const status = document.createElement('p');
+      status.innerHTML = `<strong>Status de Conservação:</strong> ${especie.status_conservacao || 'Não informado'}`;
+      quadro.appendChild(status);
+
+      // Descrição
+      const descricao = document.createElement('p');
+      descricao.innerHTML = `<strong>Descrição:</strong> ${especie.descricao || 'Não informado'}`;
+      quadro.appendChild(descricao);
 
       // Adicionar o quadro ao container
       container.appendChild(quadro);
@@ -48,6 +52,8 @@ async function carregarEspecies() {
 
   } catch (erro) {
     console.error('Erro ao carregar os dados das espécies:', erro);
+    const container = document.querySelector('.grid-especies');
+    if (container) container.innerHTML = '<p style="color:red">Erro ao carregar as espécies.</p>';
   }
 }
 

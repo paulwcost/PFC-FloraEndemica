@@ -1,5 +1,5 @@
 const express = require('express');
-
+const { protect } = require('../middleware/auth.middleware');
 
 const Colaborador = require('../models/colaborador');
 
@@ -29,7 +29,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // POST /colaboradores - Cria um novo colaborador
-router.post('/', async (req, res) => {
+router.post('/', protect, async (req, res) => {
     const colaborador = new Colaborador(req.body);
     try {
         const newColaborador = await colaborador.save();
@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
 });
 
 // PUT /colaboradores/:id - Atualiza um colaborador existente
-router.put('/:id', async (req, res) => {
+router.put('/:id', protect, async (req, res) => {
     try {
         const colaborador = await Colaborador.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!colaborador) {
@@ -53,7 +53,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // DELETE /colaboradores/:id - Deleta um colaborador
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', protect, async (req, res) => {
     try {
         const colaborador = await Colaborador.findByIdAndDelete(req.params.id);
         if (!colaborador) {

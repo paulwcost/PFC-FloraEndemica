@@ -15,15 +15,12 @@ async function preencherFormularioParaEdicao(id) {
 
         const especie = await response.json();
 
-        document.getElementById('id').value = especie._id || '';
         document.getElementById('nome_popular').value = especie.nome_popular || '';
         document.getElementById('nome_cientifico').value = especie.nome_cientifico || '';
-        document.getElementById('descricao').value = especie.descricao || '';
+        document.getElementById('caracteristicas_morfologicas').value = especie.caracteristicas_morfologicas || '';
         document.getElementById('familia').value = especie.familia || '';
         document.getElementById('status_conservacao').value = especie.status_conservacao || '';
-
-
-
+        document.getElementById('descricao').value = especie.descricao || '';
     } catch (error) {
         console.error('Erro ao carregar dados:', error);
         alert("Erro ao carregar dados da espécie.");

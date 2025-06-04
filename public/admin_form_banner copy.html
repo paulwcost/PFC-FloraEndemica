@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário de Banner</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="./img/logo.png" alt="imagem_logo">
+            Plataforma de dados sobre espécies nativas
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="admin_login.html">Admin Login</a></li>
+                <li><a href="admin_form_especie.html">Cadastro de Espécie</a></li>
+                <li><a href="admin_lista_especies.html">Lista de Espécies</a></li>
+                <li><a href="admin_lista_usuarios.html">Usuários</a></li>
+                <li><a href="admin_form_banner.html">Cadastro de Banner</a></li>
+                <li><a href="admin_banners.html">Lista de Banners</a></li>
+                <li><a href="#" id="logout-link" style="display:none;">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="container">
+      <h1 id="form-title">Novo Banner</h1>
+      <form id="banner-form">
+        <input type="hidden" id="banner-id" />
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" name="titulo" required><br>
+        <label for="descricao">Descrição:</label>
+        <textarea id="descricao" name="descricao" required></textarea><br>
+        <label for="imagem">URL da Imagem:</label>
+        <input type="text" id="imagem" name="imagem" required><br>
+        <button type="submit">Salvar</button>
+        <button type="button" onclick="window.location.href='admin_banners.html'">Cancelar</button>
+      </form>
+      <div id="feedback"></div>
+    </section>
+    <footer>
+        <p>© 2025 Plataforma de Dados - Espécies Nativas</p>
+    </footer>
+    <script src="js/auth.js"></script>
+    <script>
+        protegerRota();
+        if (getAuthToken()) {
+            document.getElementById('logout-link').style.display = 'inline';
+            document.getElementById('logout-link').onclick = function(e) {
+                e.preventDefault();
+                logout();
+            };
+        }
+    </script>
+    <script src="js/admin_form_banner.js"></script>
+</body>
+</html>

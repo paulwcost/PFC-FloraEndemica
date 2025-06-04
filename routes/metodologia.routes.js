@@ -1,5 +1,6 @@
 const express = require('express');
 const Metodologia = require('../models/metodologia');
+const { protect } = require('../middleware/auth.middleware');
 const router = express.Router();
 
 // GET /metodologia - Retorna os dados da metodologia
@@ -14,7 +15,7 @@ router.get('/', async (req, res) => {
 });
 
 // POST /metodologia - Cria os dados da metodologia
-router.post('/', async (req, res) => {
+router.post('/', protect, async (req, res) => {
     const metodologia = new Metodologia(req.body);
     try {
         const newMetodologia = await metodologia.save();
@@ -25,7 +26,7 @@ router.post('/', async (req, res) => {
 });
 
 // PUT /metodologia/:id - Atualiza os dados da metodologia (pelo ID do documento, se necessário)
-router.put('/:id', async (req, res) => {
+router.put('/:id', protect, async (req, res) => {
     try {
         const metodologia = await Metodologia.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!metodologia) {
@@ -38,7 +39,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // DELETE /metodologia/:id - Deleta os dados da metodologia (cuidado com isso)
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', protect, async (req, res) => {
     try {
         const metodologia = await Metodologia.findByIdAndDelete(req.params.id);
         if (!metodologia) {

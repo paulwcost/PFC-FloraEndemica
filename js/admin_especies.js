@@ -26,13 +26,12 @@ function renderizarEspecies(especies) {
     especies.forEach(especie => {
         const linha = document.createElement('tr');
         linha.innerHTML = `
-            <td>${especie._id}</td>
             <td>${especie.nome_popular}</td>
             <td>${especie.nome_cientifico}</td>
-            <td>${especie.descricao}</td>
+            <td>${especie.caracteristicas_morfologicas}</td>
             <td>${especie.familia}</td>
             <td>${especie.status_conservacao}</td>
-
+            <td>${especie.descricao}</td>
             <td>
                 <button onclick="editarEspecie('${especie._id}')">Editar</button>
                 <button onclick="excluirEspecie('${especie._id}')">Excluir</button>

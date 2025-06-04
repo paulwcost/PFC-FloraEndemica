@@ -1,5 +1,6 @@
 const express = require('express');
 const Destaque = require('../models/destaque');
+const { protect } = require('../middleware/auth.middleware');
 const router = express.Router();
 
 // GET /destaques - Retorna todos os destaques
@@ -26,7 +27,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // POST /destaques - Cria um novo destaque
-router.post('/', async (req, res) => {
+router.post('/', protect, async (req, res) => {
     const destaque = new Destaque(req.body);
     try {
         const newDestaque = await destaque.save();
@@ -37,7 +38,7 @@ router.post('/', async (req, res) => {
 });
 
 // PUT /destaques/:id - Atualiza um destaque existente
-router.put('/:id', async (req, res) => {
+router.put('/:id', protect, async (req, res) => {
     try {
         const destaque = await Destaque.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!destaque) {
@@ -50,7 +51,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // DELETE /destaques/:id - Deleta um destaque
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', protect, async (req, res) => {
     try {
         const destaque = await Destaque.findByIdAndDelete(req.params.id);
         if (!destaque) {

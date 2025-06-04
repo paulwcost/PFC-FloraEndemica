@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let paginaAtual = 1;
 
     function exibirPagina(pagina) {
+        if (!listaFamilias) return;
         listaFamilias.innerHTML = "";
 
         const inicio = (pagina - 1) * itemsPorPagina;
@@ -30,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
             container.appendChild(card);
         });
 
+        if (!listaFamilias) return;
         listaFamilias.appendChild(container);
         atualizarPaginacao();
     }
@@ -64,6 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             paginacaoDiv.appendChild(botaoAnterior);
             paginacaoDiv.appendChild(botaoProximo);
+            if (!listaFamilias) return;
             listaFamilias.appendChild(paginacaoDiv);
         }
 
@@ -83,7 +86,9 @@ document.addEventListener("DOMContentLoaded", function () {
             exibirPagina(paginaAtual);
         })
         .catch(error => {
-            listaFamilias.innerHTML = `<p style="color: red;">Erro ao buscar famílias: ${error.message}</p>`;
+            if (listaFamilias) {
+                listaFamilias.innerHTML = `<p style="color: red;">Erro ao buscar famílias: ${error.message}</p>`;
+            }
         });
     
     if (detalhesEspecie) {
@@ -143,53 +148,91 @@ async function carregarJSON(url) {
 async function carregarDados() {
     // HEADER
     const header = await carregarJSON("./html_dados_variaveis/header.json");
-    console.log(header);
-    document.getElementById("logo_img").src = header.logo_url;
-    document.getElementById("titulo-site").textContent = header.titulo_site;
+    if (document.getElementById("logo_img"))
+        document.getElementById("logo_img").src = header.logo_url;
+    if (document.getElementById("titulo-site"))
+        document.getElementById("titulo-site").textContent = header.titulo_site;
     const menu = document.getElementById("menu-links");
-    header.menu_links.forEach(link => {
-        const li = document.createElement("li");
-        li.innerHTML = `<a href="${link.href}">${link.texto}</a>`;
-        menu.appendChild(li);
-    });
+    if (menu && header.menu_links) {
+        header.menu_links.forEach(link => {
+            const li = document.createElement("li");
+            li.innerHTML = `<a href="${link.href}">${link.texto}</a>`;
+            menu.appendChild(li);
+        });
+    }
 
     // BANNER
     const banner = await carregarJSON("html_dados_variaveis/banner.json");
-    document.getElementById("banner-titulo").textContent = banner.titulo;
-    document.getElementById("banner-descricao").textContent = banner.descricao;
+    if (document.getElementById("banner-titulo"))
+        document.getElementById("banner-titulo").textContent = banner.titulo;
+    if (document.getElementById("banner-descricao"))
+        document.getElementById("banner-descricao").textContent = banner.descricao;
     const botao = document.getElementById("banner-botao");
-    botao.textContent = banner.botao_texto;
-    botao.href = banner.botao_link;
+    if (botao) {
+        botao.textContent = banner.botao_texto;
+        botao.href = banner.botao_link;
+    }
 
     // DESTAQUES
     const destaques = await carregarJSON("html_dados_variaveis/destaques.json");
     const destaquesSec = document.getElementById("destaques-section");
-    destaques.cards.forEach(card => {
-        const div = document.createElement("div");
-        div.className = "card";
-        div.innerHTML = `<h3>${card.titulo}</h3><p>${card.descricao}</p>`;
-        destaquesSec.appendChild(div);
-    });
+    if (destaquesSec && destaques.cards) {
+        destaques.cards.forEach(card => {
+            const div = document.createElement("div");
+            div.className = "card";
+            div.innerHTML = `<h3>${card.titulo}</h3><p>${card.descricao}</p>`;
+            destaquesSec.appendChild(div);
+        });
+    }
 
     // COLABORADOR
     const colaborador = await carregarJSON("html_dados_variaveis/colaborador.json");
-    document.getElementById("colab-titulo").textContent = colaborador.titulo;
-    document.getElementById("colab-descricao").textContent = colaborador.descricao;
+    if (document.getElementById("colab-titulo"))
+        document.getElementById("colab-titulo").textContent = colaborador.titulo;
+    if (document.getElementById("colab-descricao"))
+        document.getElementById("colab-descricao").textContent = colaborador.descricao;
     const categorias = document.getElementById("categorias-section");
-    colaborador.categorias.forEach(cat => {
-        const div = document.createElement("div");
-        div.className = "category";
-        div.innerHTML = `
-            <h3>${cat.titulo}</h3>
-            <p>${cat.descricao}</p>
-            <a href="${cat.href}" class="btn">${cat.link_texto}</a>
-        `;
-        categorias.appendChild(div);
-    });
+    if (categorias && colaborador.categorias) {
+        colaborador.categorias.forEach(cat => {
+            const div = document.createElement("div");
+            div.className = "category";
+            div.innerHTML = `
+                <h3>${cat.titulo}</h3>
+                <p>${cat.descricao}</p>
+                <a href="${cat.href}" class="btn">${cat.link_texto}</a>
+            `;
+            categorias.appendChild(div);
+        });
+    }
 
     // FOOTER
     const footer = await carregarJSON("html_dados_variaveis/footer.json");
-    document.getElementById("footer-texto").innerHTML = footer.texto;
+    if (document.getElementById("footer-texto"))
+        document.getElementById("footer-texto").innerHTML = footer.texto;
 }
 
 document.addEventListener("DOMContentLoaded", carregarDados);
+
+window.addEventListener('DOMContentLoaded', function() {
+    // MENU SANDUÍCHE
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    const menuOverlay = document.getElementById('menu-overlay');
+    if (menuToggle && navMenu && menuOverlay) {
+        menuToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+        });
+        menuOverlay.addEventListener('click', function() {
+            navMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+        });
+        // Fecha o menu ao clicar em um link
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                navMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
+            });
+        });
+    }
+});
