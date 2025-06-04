@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="js/script.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img id="logo_img" src="./img/logo.png" alt="Logo">
+            <span id="titulo-site">Painel Administrativo</span>
+        </div>
+        <nav>
+            <ul id="menu-links"></ul>
+        </nav>
+    </header>
+    <main>
+        <section class="admin-dashboard">
+            <h1>Bem-vindo(a) ao Painel Administrativo</h1>
+            <p>Gerencie facilmente os principais recursos da plataforma:</p>
+            <div class="admin-cards">
+                <a href="admin_form_especie.html" class="admin-card">
+                    <span class="admin-card-icon">🌱</span>
+                    <h2>Cadastro de Espécie</h2>
+                    <p>Adicione uma nova espécie nativa.</p>
+                </a>
+                <a href="admin_lista_especies.html" class="admin-card">
+                    <span class="admin-card-icon">📋</span>
+                    <h2>Lista de Espécies</h2>
+                    <p>Visualize e edite as espécies cadastradas.</p>
+                </a>
+                <a href="admin_lista_usuarios.html" class="admin-card">
+                    <span class="admin-card-icon">👤</span>
+                    <h2>Usuários</h2>
+                    <p>Controle o acesso e permissões dos usuários.</p>
+                </a>
+                <a href="admin_form_banner.html" class="admin-card">
+                    <span class="admin-card-icon">🖼️</span>
+                    <h2>Cadastro de Banners</h2>
+                    <p>Adicione um novo banner à plataforma.</p>
+                </a>
+                <a href="admin_banners.html" class="admin-card">
+                    <span class="admin-card-icon">📑</span>
+                    <h2>Lista de Banners</h2>
+                    <p>Gerencie os banners exibidos na página inicial.</p>
+                </a>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p id="footer-texto">&copy; 2025 Plataforma de Dados - Administração</p>
+    </footer>
+</body>
+</html>

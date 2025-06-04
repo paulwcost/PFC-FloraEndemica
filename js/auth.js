@@ -22,7 +22,7 @@ if (loginForm) {
             }
             const data = await response.json();
             localStorage.setItem('authToken', data.token);
-            window.location.href = 'admin_lista_especies.html';
+            window.location.href = 'admin_dashboard.html';
         } catch (error) {
             const erroEl = document.getElementById('login-erro');
             if (erroEl) {
