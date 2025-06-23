@@ -1,14 +1,23 @@
 // Função que carrega o JSON e popula a tela com os dados das espécies
 async function carregarEspecies() {
+  const container = document.querySelector('.grid-especies');
+  container.innerHTML = '<div style="text-align:center;padding:40px 0;">Carregando espécies...</div>';
+  let urlRemota = 'https://plataforma-de-dados-com-login.onrender.com/especies-locais';
+  let urlLocal = 'http://localhost:3000/especies-locais';
   try {
-    // Busca do backend Express/MongoDB
-    const response = await fetch('https://plataforma-de-dados-com-login.onrender.com/especies-locais');    
-    if (!response.ok) throw new Error('Erro ao carregar os dados do banco de dados');
-
+    let response;
+    try {
+      response = await fetch(urlRemota);
+    } catch (e) {
+      response = null;
+    }
+    if (!response || !response.ok) {
+      // Tenta local se remoto falhar
+      response = await fetch(urlLocal);
+      if (!response.ok) throw new Error('Erro ao carregar os dados do banco de dados (local)');
+    }
     const especies = await response.json();
-    const container = document.querySelector('.grid-especies');
     container.innerHTML = '';
-
     especies.forEach(especie => {
       // Criar div.quadro
       const quadro = document.createElement('div');
@@ -52,7 +61,6 @@ async function carregarEspecies() {
 
   } catch (erro) {
     console.error('Erro ao carregar os dados das espécies:', erro);
-    const container = document.querySelector('.grid-especies');
     if (container) container.innerHTML = '<p style="color:red">Erro ao carregar as espécies.</p>';
   }
 }
