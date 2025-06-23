@@ -14,14 +14,17 @@
         </div>
         <nav>
             <ul>
-                <li><a href="index.html">Inicial</a></li>
-                <li><a href="admin_dashboard.html">Painel Administrativo</a></li>
-                <li><a href="#" id="logout-link">Logout</a></li>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="admin_login.html">Admin Login</a></li>
+                <li><a href="admin_form_especie.html">Cadastro de Espécie</a></li>
+                <li><a href="admin_lista_especies.html">Lista de Espécies</a></li>
+                <li><a href="admin_lista_usuarios.html">Usuários</a></li>
+                <li><a href="admin_form_banner.html">Cadastro de Banner</a></li>
+                <li><a href="admin_banners.html">Lista de Banners</a></li>
+                <li><a href="#" id="logout-link" style="display:none;">Logout</a></li>
             </ul>
         </nav>
     </header>
-
-    
     <section class="container">
       <h1 id="form-title">Novo Banner</h1>
       <form id="banner-form">
@@ -30,8 +33,8 @@
         <input type="text" id="titulo" name="titulo" required><br>
         <label for="descricao">Descrição:</label>
         <textarea id="descricao" name="descricao" required></textarea><br>
-        <label for="imagem">Imagem:</label>
-        <input type="file" id="imagem" name="imagem" accept="image/*" required><br>
+        <label for="imagem">URL da Imagem:</label>
+        <input type="text" id="imagem" name="imagem" required><br>
         <button type="submit">Salvar</button>
         <button type="button" onclick="window.location.href='admin_banners.html'">Cancelar</button>
       </form>
@@ -52,6 +55,5 @@
         }
     </script>
     <script src="js/admin_form_banner.js"></script>
-    <script defer src="js/script.js"></script>
 </body>
 </html>

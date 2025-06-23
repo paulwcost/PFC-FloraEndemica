@@ -2,7 +2,7 @@
 async function carregarEspecies() {
   try {
     // Busca do backend Express/MongoDB
-    const response = await fetch('http://localhost:3000/especies-locais');
+    const response = await fetch('https://plataforma-de-dados-com-login.onrender.com/especies-locais');    
     if (!response.ok) throw new Error('Erro ao carregar os dados do banco de dados');
 
     const especies = await response.json();
@@ -28,7 +28,7 @@ async function carregarEspecies() {
       if (especie.caracteristicas_morfologicas) {
         const caracteristicas = document.createElement('p');
         caracteristicas.innerHTML = `<strong>Características Morfológicas:</strong> ${especie.caracteristicas_morfologicas}`;
-        quadro.appendChild(caracteristicas_morfologicas);
+        quadro.appendChild(caracteristicas);
       }
 
       // Família

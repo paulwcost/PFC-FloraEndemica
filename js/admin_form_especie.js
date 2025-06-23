@@ -4,8 +4,6 @@ alert(idEspecieEditando);
 
 if (idEspecieEditando) {
     preencherFormularioParaEdicao(idEspecieEditando);
-} else{
-    alert("Nenhum ID de espécie encontrado para edição.");
 }
 
 async function preencherFormularioParaEdicao(id) {
@@ -33,7 +31,8 @@ formCadastro.addEventListener('submit', async function (event) {
     const formData = new FormData(formCadastro);
     const dadosEspecie = Object.fromEntries(formData.entries());
 
-    alert("Dados da espécie: " + JSON.stringify(dadosEspecie));
+    // Log para depuração
+    console.log('Dados enviados para API:', dadosEspecie);
 
     const metodo = dadosEspecie.id ? 'PUT' : 'POST';
     const url = dadosEspecie.id
@@ -50,8 +49,12 @@ formCadastro.addEventListener('submit', async function (event) {
             body: JSON.stringify(dadosEspecie)
         });
 
+        // Log da resposta para depuração
+        const respostaApi = await response.clone().json().catch(() => null);
+        console.log('Resposta da API:', respostaApi);
+
         if (!response.ok) {
-            const errorData = await response.json();
+            const errorData = respostaApi || await response.json();
             throw new Error(`Erro ${response.status}: ${errorData.message || 'Erro desconhecido'}`);
         }
 
