@@ -1,7 +1,6 @@
 // Função que carrega o JSON e popula a tela com os dados das espécies
 async function carregarEspecies() {
   const container = document.querySelector('.grid-especies');
-  container.innerHTML = '<div style="text-align:center;padding:40px 0;">Carregando espécies...</div>';
   let urlRemota = 'https://plataforma-de-dados-com-login.onrender.com/especies-locais';
   let urlLocal = 'http://localhost:3000/especies-locais';
   try {
@@ -13,8 +12,12 @@ async function carregarEspecies() {
     }
     if (!response || !response.ok) {
       // Tenta local se remoto falhar
-      response = await fetch(urlLocal);
-      if (!response.ok) throw new Error('Erro ao carregar os dados do banco de dados (local)');
+      try {
+        response = await fetch(urlLocal);
+      } catch (e) {
+        response = null;
+      }
+      if (!response || !response.ok) throw new Error('Erro ao carregar os dados do banco de dados (local)');
     }
     const especies = await response.json();
     container.innerHTML = '';
@@ -58,10 +61,9 @@ async function carregarEspecies() {
       // Adicionar o quadro ao container
       container.appendChild(quadro);
     });
-
   } catch (erro) {
     console.error('Erro ao carregar os dados das espécies:', erro);
-    if (container) container.innerHTML = '<p style="color:red">Erro ao carregar as espécies.</p>';
+    if (container) container.innerHTML = '<div class="erro-feedback"><strong>Não foi possível conectar ao banco de dados remoto ou local.</strong><br>Verifique sua conexão ou tente novamente mais tarde.</div>';
   }
 }
 
