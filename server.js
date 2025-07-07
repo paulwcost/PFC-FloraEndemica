@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const helmet = require('helmet'); // Importa o Helmet
 
 dotenv.config(); // Carrega as variáveis de ambiente do arquivo .env
 
@@ -11,10 +12,28 @@ const port = process.env.PORT || 3000;
 // Middlewares
 app.use(cors());
 app.use(express.json()); // Para o Express entender dados JSON nas requisições
+app.use(express.static('.')); // Servir arquivos estáticos da raiz do projeto
+
+// Configuração do Helmet para segurança dos headers
+app.use(helmet());
+app.use(helmet.contentSecurityPolicy({
+    directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-inline'"], // Pode precisar de ajuste dependendo dos scripts externos
+        styleSrc: ["'self'", "'unsafe-inline'"], // Pode precisar de ajuste dependendo dos estilos externos
+        imgSrc: ["'self'", "data:", "https://*"] // Permite imagens de self, data URIs e qualquer HTTPS
+    }
+}));
+app.use(helmet.frameguard({ action: 'DENY' })); // X-Frame-Options
+app.use(helmet.noSniff()); // X-Content-Type-Options
+app.use(helmet.referrerPolicy({ policy: 'no-referrer-when-downgrade' })); // Referrer-Policy
+app.use(helmet.hsts({
+    maxAge: 31536000, // 1 ano em segundos
+    includeSubDomains: true,
+    preload: true
+}));
 
 // Importar as rotas
-// js/server.js
-
 const bannerRoutes = require('./routes/banner.routes');
 const colaboradorRoutes = require('./routes/colaborador.routes');
 const destaqueRoutes = require('./routes/destaques.routes');
@@ -39,10 +58,7 @@ app.use('/auth', authRoutes);
 // Conexão com o MongoDB
 const mongoURI = process.env.MONGO_URI;
 
-mongoose.connect(mongoURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
+mongoose.connect(mongoURI)
 .then(() => console.log('Conectado ao MongoDB'))
 .catch((err) => console.error('Erro ao conectar ao MongoDB:', err));
 
@@ -50,6 +66,5 @@ mongoose.connect(mongoURI, {
 app.listen(port, () => {
     console.log(`Servidor rodando na porta ${port}`);
 });
-
 
 

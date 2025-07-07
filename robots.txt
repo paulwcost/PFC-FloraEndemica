@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://plataforma-de-dados-com-login.vercel.app/sitemap.xml
+
+# Disallow admin pages
+Disallow: /admin_*
+Disallow: /js/
+Disallow: /routes/
+Disallow: /models/
+Disallow: /middleware/
+Disallow: /html_dados_variaveis/
+
