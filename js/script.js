@@ -1,4 +1,33 @@
 document.addEventListener("DOMContentLoaded", function () {
+    // Busca por palavra-chave
+    const searchForm = document.getElementById("search-form");
+    const searchInput = document.getElementById("search-keyword");
+    const destaquesSection = document.getElementById("destaques-section");
+    // Exemplo de dados de espécies (substitua por dados reais ou API)
+    const especies = [
+        { nome: "Myracrodruon urundeuva", descricao: "Árvore nativa brasileira, conhecida como aroeira." },
+        { nome: "Tabebuia impetiginosa", descricao: "Popularmente chamada de ipê-roxo." },
+        { nome: "Cecropia pachystachya", descricao: "Conhecida como embaúba, comum em áreas de floresta." }
+    ];
+
+    if (searchForm && searchInput && destaquesSection) {
+        searchForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const termo = searchInput.value.trim().toLowerCase();
+            destaquesSection.innerHTML = "";
+            const resultados = especies.filter(e => e.nome.toLowerCase().includes(termo) || e.descricao.toLowerCase().includes(termo));
+            if (resultados.length === 0) {
+                destaquesSection.innerHTML = `<p>Nenhuma espécie encontrada para "${termo}".</p>`;
+            } else {
+                resultados.forEach(e => {
+                    const div = document.createElement("div");
+                    div.className = "card";
+                    div.innerHTML = `<h3>${e.nome}</h3><p>${e.descricao}</p>`;
+                    destaquesSection.appendChild(div);
+                });
+            }
+        });
+    }
     const listaFamilias = document.getElementById("lista-familias");
     const detalhesEspecie = document.getElementById("detalhes-especie");
     const url = "https://servicos.jbrj.gov.br/v2/flora/families";  // URL para as famílias
