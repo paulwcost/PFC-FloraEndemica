@@ -46,19 +46,56 @@ document.addEventListener("DOMContentLoaded", function () {
         const container = document.createElement("div");
         container.classList.add("familias-container");
 
-        familiasPagina.forEach(familia => {
-            const card = document.createElement("a");
-            card.classList.add("card");
-            // Atualize o href para redirecionar para a página "Especies.html" com o parâmetro family
-            card.href = `especies.html?family=${familia}`;
-            card.style.cursor = 'pointer'; // Garantir que o cursor seja o de mãozinha
 
+        familiasPagina.forEach(familia => {
+            const card = document.createElement("div");
+            card.classList.add("card");
+            card.style.cursor = 'pointer';
             const titulo = document.createElement("h3");
             titulo.textContent = familia;
-            
             card.appendChild(titulo);
+            card.addEventListener('click', async function() {
+                await exibirEspeciesDaFamilia(familia);
+            });
             container.appendChild(card);
         });
+// Função para buscar e exibir espécies de uma família
+async function exibirEspeciesDaFamilia(familia) {
+    if (!listaFamilias) return;
+    listaFamilias.innerHTML = `<h2>Espécies da Família ${familia}</h2><div id="especies-list"></div><button id="voltar-familias">Voltar</button>`;
+    document.getElementById('voltar-familias').onclick = () => exibirPagina(paginaAtual);
+    const especiesList = document.getElementById('especies-list');
+    try {
+        const response = await fetch(`https://servicos.jbrj.gov.br/v2/flora/species/${familia}`);
+        const data = await response.json();
+        if (!data || data.length === 0) {
+            especiesList.innerHTML = '<p>Nenhuma espécie encontrada para esta família.</p>';
+            return;
+        }
+        data.forEach(species => {
+            const div = document.createElement('div');
+            div.className = 'species-card';
+            div.innerHTML = `
+                <h3>${species.scientificname || 'Nome científico não disponível'}</h3>
+                ${species.popularname ? `<p><strong>Nome popular:</strong> ${species.popularname}</p>` : ''}
+                ${species.author ? `<p><strong>Autor:</strong> ${species.author}</p>` : ''}
+                ${species.description ? `<p><strong>Descrição:</strong> ${species.description}</p>` : ''}
+                ${species.threatstatus ? `<p><strong>Status de ameaça:</strong> ${species.threatstatus}</p>` : ''}
+                ${species.distribution ? `<p><strong>Distribuição:</strong> ${species.distribution}</p>` : ''}
+                ${species.imageurl ? `<img src="${species.imageurl}" alt="Imagem da espécie ${species.scientificname}" loading="lazy" style="max-width:200px;">` : ''}
+                ${species.source ? `<p><strong>Fonte:</strong> <a href="${species.source}" target="_blank">${species.source}</a></p>` : ''}
+                <button class="btn-detalhe-especie">Ver detalhes</button>
+            `;
+            div.querySelector('.btn-detalhe-especie').onclick = () => {
+                // Passa o nome científico na URL (encode)
+                window.location.href = `especies.html?scientificname=${encodeURIComponent(species.scientificname)}`;
+            };
+            especiesList.appendChild(div);
+        });
+    } catch (err) {
+        especiesList.innerHTML = `<p style=\"color:red\">Erro ao buscar espécies: ${err.message}</p>`;
+    }
+}
 
         if (!listaFamilias) return;
         listaFamilias.appendChild(container);
@@ -120,52 +157,46 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     
+    // Página especies.html: exibe detalhes de uma espécie específica
     if (detalhesEspecie) {
         const params = new URLSearchParams(window.location.search);
-        const familia = params.get("family");
-        
-        console.log(familia);
-
-        fetch(`https://servicos.jbrj.gov.br/v2/flora/species/${familia}`)
-    .then(response => response.json())
-    .then(data => {
-        // Verifique os dados retornados
-        console.log(data); // Verifique o que está sendo retornado da API
-
-        // Se o array de espécies estiver vazio, exiba uma mensagem
-        if (data.length === 0) {
-            detalhesEspecie.innerHTML = `<p>Não há espécies disponíveis para esta família.</p>`;
-        } else {
-            detalhesEspecie.innerHTML = `<h2>Espécies da Família ${familia}</h2>`;
-
-            // Loop para cada espécie retornada
-            data.forEach(species => {
-                console.log("Está são as espécies: ", species); // Verifique a estrutura de cada espécie
-
-                let div = document.createElement("div");
-                div.classList.add("species-item");
-
-                // Ajuste conforme os nomes corretos dos campos
-                const scientificName = species.scientificname; // Usar o nome correto
-
-                // Se os dados existem, exiba-os
-                if (scientificName) {
-                    div.innerHTML = `<strong>${scientificName}</strong>}`;
-                } else {
-                    div.innerHTML = `<strong>Informação não disponível</strong>`;
+        const scientificname = params.get("scientificname");
+        if (scientificname) {
+            detalhesEspecie.innerHTML = '<div class="loader"></div>';
+            // Timeout para evitar loader infinito
+            let carregou = false;
+            const timeout = setTimeout(() => {
+                if (!carregou) {
+                    detalhesEspecie.innerHTML = '<p style="color:red">Tempo de resposta excedido. Tente novamente mais tarde.</p>';
                 }
-
-                // Adicione o novo elemento à página
-                detalhesEspecie.appendChild(div);
-            });
+            }, 10000);
+            fetch(`https://servicos.jbrj.gov.br/v2/flora/species?scientificname=${encodeURIComponent(scientificname)}`)
+                .then(response => response.json())
+                .then(data => {
+                    carregou = true;
+                    clearTimeout(timeout);
+                    if (!data || data.length === 0) {
+                        detalhesEspecie.innerHTML = `<p>Espécie não encontrada.<br>Verifique se o nome científico está correto ou tente outra espécie.</p>`;
+                        return;
+                    }
+                    const species = data[0];
+                    detalhesEspecie.innerHTML = `
+                        <h2>${species.scientificname || 'Nome científico não disponível'}</h2>
+                        ${species.popularname ? `<p><strong>Nome popular:</strong> ${species.popularname}</p>` : ''}
+                        ${species.author ? `<p><strong>Autor:</strong> ${species.author}</p>` : ''}
+                        ${species.description ? `<p><strong>Descrição:</strong> ${species.description}</p>` : ''}
+                        ${species.threatstatus ? `<p><strong>Status de ameaça:</strong> ${species.threatstatus}</p>` : ''}
+                        ${species.distribution ? `<p><strong>Distribuição:</strong> ${species.distribution}</p>` : ''}
+                        ${species.imageurl ? `<img src="${species.imageurl}" alt="Imagem da espécie ${species.scientificname}" loading="lazy" style="max-width:300px;">` : ''}
+                        ${species.source ? `<p><strong>Fonte:</strong> <a href="${species.source}" target="_blank">${species.source}</a></p>` : ''}
+                    `;
+                })
+                .catch(error => {
+                    carregou = true;
+                    clearTimeout(timeout);
+                    detalhesEspecie.innerHTML = `<p style="color: red;">Erro ao carregar as informações da espécie.</p>`;
+                });
         }
-    })
-    .catch(error => {
-        console.error("Erro ao buscar detalhes da espécie: ", error);
-        detalhesEspecie.innerHTML = `<p style="color: red;">Erro ao carregar as informações da espécie.</p>`;
-    });
-
-    
     }
 });
 

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Mapa Georreferenciado | Plataforma de Dados de Espécies Nativas</title>
+  <meta name="description" content="Visualize e gerencie pontos georreferenciados de espécies nativas do Brasil. Apenas administradores podem adicionar novos pontos.">
+  <style>
+    #map {
+      height: 80vh;
+      width: 100%;
+      border: 1px solid #ccc;
+      margin-top: 20px;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f7f7f7;
+    }
+    h1 {
+      color: #2c3e50;
+    }
+    .info {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Mapa Georreferenciado</h1>
+  <div class="info" id="infoMsg"></div>
+  <div id="map"></div>
+  <script>
+    let map;
+    let markers = [];
+    // Simulação: defina como true se o usuário for admin, false se não for
+    const isAdmin = false; // Troque para true para testar como admin
+
+    function initMap() {
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: -14.235004, lng: -51.92528 }, // Centro do Brasil
+        zoom: 4,
+      });
+      if (isAdmin) {
+        document.getElementById('infoMsg').textContent = "Clique no mapa para adicionar um marcador.";
+        map.addListener("click", (e) => {
+          addMarker(e.latLng);
+        });
+      } else {
+        document.getElementById('infoMsg').textContent = "Apenas administradores podem adicionar pontos.";
+      }
+    }
+    function addMarker(location) {
+      const marker = new google.maps.Marker({
+        position: location,
+        map: map,
+      });
+      markers.push(marker);
+      // Exibe coordenadas ao clicar no marcador
+      marker.addListener("click", () => {
+        alert(`Coordenadas:\nLatitude: ${location.lat().toFixed(6)}\nLongitude: ${location.lng().toFixed(6)}`);
+      });
+    }
+  </script>
+  <!-- Substitua SUA_API_KEY abaixo pela sua chave da Google Maps JavaScript API -->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHbGwLDwUK6rPS6EXiXRU2IXD9ns3CLhw&callback=initMap"></script>
+</body>
+</html>

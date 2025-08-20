@@ -22,7 +22,7 @@ function renderBanners(banners) {
     tr.innerHTML = `
       <td>${banner.titulo}</td>
       <td>${banner.descricao}</td>
-      <td><img src="${banner.imagem}" alt="Banner" style="max-width:100px;"></td>
+      <td><img src="${banner.imagem}" alt="Banner" style="max-width:100px;" loading="lazy"></td>
       <td>
         <button onclick="editBanner('${banner._id}')">Editar</button>
         <button onclick="deleteBanner('${banner._id}')">Excluir</button>

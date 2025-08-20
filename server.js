@@ -1,4 +1,6 @@
 const express = require('express');
+const compression = require('compression');
+const rateLimit = require('express-rate-limit');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
@@ -12,6 +14,15 @@ const port = process.env.PORT || 3000;
 // Middlewares
 app.use(cors());
 app.use(express.json()); // Para o Express entender dados JSON nas requisições
+app.use(compression()); // Ativa compressão Gzip para todas as respostas
+
+// Limite de requisições para rotas sensíveis (exemplo: login)
+const authLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutos
+    max: 10, // Limita a 10 requisições por IP por janela
+    message: 'Muitas tentativas de login. Tente novamente em 15 minutos.'
+});
+app.use('/auth/login', authLimiter);
 app.use(express.static('.')); // Servir arquivos estáticos da raiz do projeto
 
 // Configuração do Helmet para segurança dos headers
