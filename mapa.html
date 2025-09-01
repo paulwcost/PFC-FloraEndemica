@@ -2,66 +2,118 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mapa Georreferenciado | Plataforma de Dados de Espécies Nativas</title>
   <meta name="description" content="Visualize e gerencie pontos georreferenciados de espécies nativas do Brasil. Apenas administradores podem adicionar novos pontos.">
-  <style>
-    #map {
-      height: 80vh;
-      width: 100%;
-      border: 1px solid #ccc;
-      margin-top: 20px;
-    }
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
-      background: #f7f7f7;
-    }
-    h1 {
-      color: #2c3e50;
-    }
-    .info {
-      margin-bottom: 10px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="js/script.js"></script>
 </head>
 <body>
-  <h1>Mapa Georreferenciado</h1>
-  <div class="info" id="infoMsg"></div>
-  <div id="map"></div>
-  <script>
-    let map;
-    let markers = [];
-    // Simulação: defina como true se o usuário for admin, false se não for
-    const isAdmin = false; // Troque para true para testar como admin
+  <header>
+    <div class="logo">
+      <img id="logo_img" src="./img/logo.png" alt="Logotipo da Plataforma de Dados de Espécies Nativas do Brasil" loading="lazy">
+      <span id="titulo-site">Mapa Georreferenciado</span>
+    </div>
+    <nav>
+      <ul id="menu-links"></ul>
+    </nav>
+  </header>
 
-    function initMap() {
-      map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: -14.235004, lng: -51.92528 }, // Centro do Brasil
-        zoom: 4,
-      });
-      if (isAdmin) {
-        document.getElementById('infoMsg').textContent = "Clique no mapa para adicionar um marcador.";
-        map.addListener("click", (e) => {
-          addMarker(e.latLng);
-        });
-      } else {
-        document.getElementById('infoMsg').textContent = "Apenas administradores podem adicionar pontos.";
+  <main>
+    <h1>Mapa Georreferenciado</h1>
+    <div class="info" id="infoMsg"></div>
+    <div id="map" style="height: 70vh; width: 100%; border: 1px solid #ccc; margin-top: 20px;"></div>
+  </main>
+
+  <footer>
+    <p id="footer-texto">&copy; 2025 Plataforma de Dados sobre Espécies Nativas - Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+ let map;
+
+    // Dados das espécies nativas para georreferenciamento
+    const especies = [
+      {
+        lat: -24.420,
+        lng: -53.520,
+        nome: "Ipê-Amarelo",
+        descricao: "Árvore símbolo do Brasil"
+      },
+      {
+        lat: -25.430,
+        lng: -49.270,
+        nome: "Araucária",
+        descricao: "Espécie típica da região Sul"
+      },
+      {
+        lat: -22.902,
+        lng: -43.207,
+        nome: "Pau-Brasil",
+        descricao: "Árvore histórica e ameaçada de extinção"
       }
-    }
-    function addMarker(location) {
+    ];
+
+    // Define o ícone customizado para os marcadores
+    const treeIcon = {
+      url: 'img/arvore.png',
+      scaledSize: new google.maps.Size(40, 40)
+    };
+
+    // Função para adicionar um marcador no mapa
+    function addMarker(location, nome, descricao) {
       const marker = new google.maps.Marker({
         position: location,
         map: map,
+        title: nome,
+        icon: treeIcon
       });
-      markers.push(marker);
-      // Exibe coordenadas ao clicar no marcador
-      marker.addListener("click", () => {
-        alert(`Coordenadas:\nLatitude: ${location.lat().toFixed(6)}\nLongitude: ${location.lng().toFixed(6)}`);
+
+      const contentString = `<strong>${nome}</strong><br>${descricao}`;
+      const infowindow = new google.maps.InfoWindow({
+        content: contentString
+      });
+
+      marker.addListener('click', () => {
+        infowindow.open(map, marker);
       });
     }
+
+    function initMap() {
+      // Cria o mapa
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: -24.0, lng: -49.0 },
+        zoom: 5,
+      });
+
+      // Adiciona os marcadores iniciais
+      especies.forEach(especie => {
+        addMarker({ lat: especie.lat, lng: especie.lng }, especie.nome, especie.descricao);
+      });
+
+      // Lógica para administradores
+      const isAdmin = localStorage.getItem('userRole') === 'admin';
+      if (isAdmin) {
+        document.getElementById('infoMsg').textContent = "Clique no mapa para adicionar um novo ponto.";
+        
+        map.addListener("click", (e) => {
+          const nome = prompt("Digite o nome da espécie:");
+          if (!nome) return; // Cancela se o nome não for inserido
+
+          const descricao = prompt("Digite a descrição da espécie:");
+          if (!descricao) return; // Cancela se a descrição não for inserida
+
+          // Adiciona o novo marcador no mapa
+          addMarker(e.latLng, nome, descricao);
+        });
+      } else {
+        document.getElementById('infoMsg').textContent = "Visualizando pontos de espécies. Apenas administradores podem adicionar novos pontos.";
+      }
+    }
+
   </script>
-  <!-- Substitua SUA_API_KEY abaixo pela sua chave da Google Maps JavaScript API -->
+
+  <!-- Substitua SUA_API_KEY pela sua chave da API Google Maps -->
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHbGwLDwUK6rPS6EXiXRU2IXD9ns3CLhw&callback=initMap"></script>
 </body>
 </html>
