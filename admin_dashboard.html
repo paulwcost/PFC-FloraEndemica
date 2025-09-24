@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel Administrativo</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="menu.css">
     <script defer src="js/script.js"></script>
 </head>
 <body>
@@ -13,12 +14,17 @@
             <img id="logo_img" src="./img/logo.png" alt="Logotipo da Plataforma de Dados de Espécies Nativas do Brasil" loading="lazy">
             <span id="titulo-site">Painel Administrativo</span>
         </div>
-        <nav>
+        <nav class="main-nav">
             <ul id="menu-links"></ul>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </nav>
     </header>
     <main>
-        <section class="admin-dashboard">
+        <div class="admin-dashboard">
             <h1>Bem-vindo(a) ao Painel Administrativo</h1>
             <p>Gerencie facilmente os principais recursos da plataforma:</p>
             <div class="admin-cards">
@@ -53,7 +59,7 @@
                     <p>Adicione e visualize pontos geográficos.</p>
                 </a>
             </div>
-        </section>
+        </div>
     </main>
     <footer>
         <p id="footer-texto">&copy; 2025 Plataforma de Dados - Administração</p>

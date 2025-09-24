@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo de Espécies Nativas | Plataforma de Dados</title>
     <meta name="description" content="Pesquise espécies nativas do Brasil por palavra-chave. Plataforma de Dados: informações detalhadas e colaboração para conservação. Explore agora!">
-    <meta name="description" content="Pesquise espécies nativas do Brasil por palavra-chave. Plataforma de Dados: informações detalhadas e colaboração para conservação. Explore agora!">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="menu.css">
     <script defer src="js/script.js"></script>
 </head>
 <body>
@@ -16,12 +16,17 @@
             <img id="logo_img" src="./img/logo.png" alt="Logotipo da Plataforma de Dados de Espécies Nativas do Brasil" loading="lazy">
             <span id="titulo-site"></span>
         </div>
-        <nav style="display: flex; justify-content: space-between; align-items: center;">
-            <ul id="menu-links" style="margin: 0; padding: 0; display: flex; gap: 16px;"></ul>
-            <form id="search-form" style="display: flex; align-items: center; gap: 8px; margin-left: auto;">
-                <input type="text" id="search-keyword" name="search-keyword" placeholder="Buscar palavra-chave..." style="padding:5px; width:180px;">
-                <button type="submit" style="padding:5px 12px;">Pesquisar</button>
+        <nav class="main-nav">
+            <ul id="menu-links"></ul>
+            <form id="search-form">
+                <input type="text" id="search-keyword" name="search-keyword" placeholder="Buscar palavra-chave...">
+                <button type="submit">Pesquisar</button>
             </form>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </nav>
     </header>
     

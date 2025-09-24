@@ -6,6 +6,7 @@
   <title>Administração de Banners | Plataforma de Dados de Espécies Nativas</title>
   <meta name="description" content="Gerencie banners exibidos na plataforma. Apenas administradores têm acesso.">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="menu.css">
 </head>
 <body>
 <header>
@@ -13,21 +14,26 @@
             <img src="./img/logo.png" alt="Logotipo da Plataforma de Dados de Espécies Nativas do Brasil" loading="lazy">
             <span id="titulo-site">Administração de Banners</span>
         </div>
-        <nav>
-            <ul>
+        <nav class="main-nav">
+            <ul id="menu-links">
                 <li><a href="index.html">Inicial</a></li>
                 <li><a href="admin_dashboard.html">Painel Administrativo</a></li>
                 <li><a href="#" id="logout-link">Logout</a></li>
             </ul>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </nav>
     </header>
 
 
-    <section class="container">
+    <section class="sobre">
       <h1>Administração de Banners</h1>
-      <button onclick="window.location.href='admin_form_banner.html'">Novo Banner</button>
+      <button onclick="window.location.href='admin_form_banner.html'" class="botao">Novo Banner</button>
       <div id="feedback"></div>
-      <table id="banners-table">
+      <table id="banners-table" class="card">
         <thead>
           <tr>
             <th>Título</th>

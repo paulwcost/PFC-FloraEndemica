@@ -6,6 +6,7 @@
     <title>Cadastro/Edição de Usuário | Plataforma de Dados de Espécies Nativas</title>
     <meta name="description" content="Cadastre ou edite usuários administradores da Plataforma de Dados de Espécies Nativas.">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="menu.css">
 </head>
 <body>
 <header>
@@ -13,8 +14,8 @@
             <img src="./img/logo.png" alt="Logotipo da Plataforma de Dados de Espécies Nativas do Brasil">
             Plataforma de dados sobre espécies nativas
         </div>
-        <nav>
-            <ul>
+        <nav class="main-nav">
+            <ul id="menu-links">
                 <li><a href="index.html">Início</a></li>
                 <li><a href="admin_login.html">Admin Login</a></li>
                 <li><a href="admin_form_especie.html">Cadastro de Espécie</a></li>
@@ -24,24 +25,37 @@
                 <li><a href="admin_banners.html">Lista de Banners</a></li>
                 <li><a href="#" id="logout-link" style="display:none;">Logout</a></li>
             </ul>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </nav>
     </header>
-    <section class="container">
+    <section class="login-container">
         <h1 id="titulo-form">Cadastrar Usuário</h1>
-        <form id="formUsuario">
+        <form id="formUsuario" class="form-container">
             <input type="hidden" id="id" name="id">
-            <label for="username">Usuário:</label>
-            <input type="text" id="username" name="username" required>
-            <label for="password">Senha:</label>
-            <input type="password" id="password" name="password" required>
-            <label for="confirm_password">Confirmar Senha:</label>
-            <input type="password" id="confirm_password" name="confirm_password" required>
-            <label for="role">Papel:</label>
-            <select id="role" name="role" required>
-                <option value="admin">Admin</option>
-                <option value="user">User</option>
-            </select>
-            <button type="submit">Salvar</button>
+            <div class="input-group">
+                <label for="username">Usuário:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="input-group">
+                <label for="confirm_password">Confirmar Senha:</label>
+                <input type="password" id="confirm_password" name="confirm_password" required>
+            </div>
+            <div class="input-group">
+                <label for="role">Papel:</label>
+                <select id="role" name="role" required>
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
+                </select>
+            </div>
+            <button type="submit" class="botao">Salvar</button>
             <div id="usuario-erro" style="color: red; display: none; margin-top: 10px;"></div>
         </form>
     </section>

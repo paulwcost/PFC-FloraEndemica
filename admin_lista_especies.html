@@ -7,36 +7,7 @@
     <title>Lista de Espécies | Plataforma de Dados de Espécies Nativas</title>
     <meta name="description" content="Veja e gerencie a lista de espécies cadastradas na plataforma. Apenas administradores têm acesso.">
     <link rel="stylesheet" href="style.css">
-    <style>
-      /* Estilos adicionais para a tabela */
-      table {
-          width: 100%;
-          border-collapse: collapse;
-          margin-top: 20px;
-      }
-      th, td {
-          border: 1px solid #ddd;
-          padding: 8px;
-          text-align: left;
-      }
-      th {
-          background-color: #f2f2f2;
-      }
-      .botao-acao {
-          padding: 5px 10px;
-          margin: 5px;
-          border: none;
-          color: white;
-          cursor: pointer;
-          border-radius: 5px;
-      }
-      .botao-editar {
-          background-color: #4CAF50; /* Verde */
-      }
-      .botao-excluir {
-          background-color: #f44336; /* Vermelho */
-      }
-    </style>
+    <link rel="stylesheet" href="menu.css">
 </head>
 <body>
 
@@ -45,19 +16,27 @@
             <img src="./img/logo.png" alt="Logotipo da Plataforma de Dados de Espécies Nativas do Brasil" loading="lazy">
             <span id="titulo-site">Lista de Espécies</span>
         </div>
-        <nav>
-            <ul>
+        <nav class="main-nav">
+            <ul id="menu-links">
                 <li><a href="index.html">Inicial</a></li>
                 <li><a href="admin_dashboard.html">Painel Administrativo</a></li>
                 <li><a href="#" id="logout-link">Logout</a></li>
             </ul>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </nav>
     </header>
 
-    <section class="container">
+    <section class="sobre">
         <h1>Lista de Espécies</h1>
-        <a href="admin_form_especie.html" class="botao-adicionar">+ Nova Espécie</a>
-        <table>
+        <a href="admin_form_especie.html" class="botao">+ Nova Espécie</a>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Pesquisar espécies...">
+        </div>
+        <table class="card">
             <thead>
                 <tr>
                     <th>Nome Popular</th>

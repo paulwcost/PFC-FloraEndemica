@@ -23,7 +23,6 @@ const authLimiter = rateLimit({
     message: 'Muitas tentativas de login. Tente novamente em 15 minutos.'
 });
 app.use('/auth/login', authLimiter);
-app.use(express.static('.')); // Servir arquivos estáticos da raiz do projeto
 
 // Configuração do Helmet para segurança dos headers
 app.use(helmet());
@@ -65,6 +64,10 @@ app.use('/header', headerRoutes);
 app.use('/metodologia', metodologiaRoutes);
 app.use('/users', userRoutes);
 app.use('/auth', authRoutes);
+
+// Servir arquivos estáticos da raiz do projeto (após as rotas da API)
+app.use(express.static('.'));
+
 
 // Conexão com o MongoDB
 const mongoURI = process.env.MONGO_URI;

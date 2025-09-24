@@ -6,15 +6,7 @@
     <title>Lista de Usuários | Plataforma de Dados de Espécies Nativas</title>
     <meta name="description" content="Veja e gerencie a lista de usuários administradores cadastrados na plataforma.">
     <link rel="stylesheet" href="style.css">
-    <style>
-      table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-      th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-      th { background-color: #f2f2f2; }
-      .botao-acao { padding: 5px 10px; margin: 5px; border: none; color: white; cursor: pointer; border-radius: 5px; }
-      .botao-editar { background-color: #4CAF50; }
-      .botao-excluir { background-color: #f44336; }
-      .botao-adicionar { background-color: #2196F3; color: white; padding: 8px 16px; border: none; border-radius: 5px; margin-bottom: 10px; cursor: pointer; }
-    </style>
+    <link rel="stylesheet" href="menu.css">
 </head>
 <body>
 <header>
@@ -22,19 +14,24 @@
             <img src="./img/logo.png" alt="Logotipo da Plataforma de Dados de Espécies Nativas do Brasil" loading="lazy">
             <span id="titulo-site">Lista de Usuários</span>
         </div>
-        <nav>
-            <ul>
+        <nav class="main-nav">
+            <ul id="menu-links">
                 <li><a href="index.html">Inicial</a></li>
                 <li><a href="admin_dashboard.html">Painel Administrativo</a></li>
                 <li><a href="#" id="logout-link">Logout</a></li>
             </ul>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </nav>
     </header>
 
-    <section class="container">
+    <section class="sobre">
         <h1>Usuários</h1>
-        <button class="botao-adicionar" onclick="window.location.href='admin_form_usuario.html'">Adicionar Novo Usuário</button>
-        <table>
+        <button class="botao" onclick="window.location.href='admin_form_usuario.html'">Adicionar Novo Usuário</button>
+        <table class="card">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -49,7 +46,7 @@
         </table>
     </section>
     <footer>
-        <p>&copy; 2025 Plataforma de Dados - Espécies Nativas</p>
+        <p>© 2025 Plataforma de Dados - Espécies Nativas</p>
     </footer>
     <script src="js/auth.js"></script>
     <script>protegerRota();

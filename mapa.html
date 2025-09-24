@@ -6,7 +6,7 @@
   <title>Mapa Georreferenciado | Plataforma de Dados de Espécies Nativas</title>
   <meta name="description" content="Visualize e gerencie pontos georreferenciados de espécies nativas do Brasil. Apenas administradores podem adicionar novos pontos.">
   <link rel="stylesheet" href="style.css">
-  <script defer src="js/script.js"></script>
+  <link rel="stylesheet" href="menu.css">
 </head>
 <body>
   <header>
@@ -14,8 +14,13 @@
       <img id="logo_img" src="./img/logo.png" alt="Logotipo da Plataforma de Dados de Espécies Nativas do Brasil" loading="lazy">
       <span id="titulo-site">Mapa Georreferenciado</span>
     </div>
-    <nav>
+    <nav class="main-nav">
       <ul id="menu-links"></ul>
+      <div class="menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+      </div>
     </nav>
   </header>
 
@@ -30,29 +35,7 @@
   </footer>
 
   <script>
- let map;
-
-    // Dados das espécies nativas para georreferenciamento
-    const especies = [
-      {
-        lat: -24.420,
-        lng: -53.520,
-        nome: "Ipê-Amarelo",
-        descricao: "Árvore símbolo do Brasil"
-      },
-      {
-        lat: -25.430,
-        lng: -49.270,
-        nome: "Araucária",
-        descricao: "Espécie típica da região Sul"
-      },
-      {
-        lat: -22.902,
-        lng: -43.207,
-        nome: "Pau-Brasil",
-        descricao: "Árvore histórica e ameaçada de extinção"
-      }
-    ];
+    let map;
 
     // Define o ícone customizado para os marcadores
     const treeIcon = {
@@ -79,17 +62,33 @@
       });
     }
 
-    function initMap() {
-      // Cria o mapa
+    async function initMap() {
+      // Cria o mapa, centralizado em Assis Chateaubriand
       map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: -24.0, lng: -49.0 },
-        zoom: 5,
+        center: { lat: -24.3836, lng: -53.5183 },
+        zoom: 12,
       });
 
-      // Adiciona os marcadores iniciais
-      especies.forEach(especie => {
-        addMarker({ lat: especie.lat, lng: especie.lng }, especie.nome, especie.descricao);
-      });
+      // Busca os dados das espécies no backend
+      try {
+        const response = await fetch('/especies-locais');
+        if (!response.ok) {
+          throw new Error('Falha ao buscar dados das espécies.');
+        }
+        const especies = await response.json();
+        
+        // Adiciona os marcadores para cada espécie
+        especies.forEach(especie => {
+          if (especie.latitude && especie.longitude) {
+            const location = { lat: especie.latitude, lng: especie.longitude };
+            addMarker(location, especie.nome_popular, especie.nome_cientifico);
+          }
+        });
+      } catch (error) {
+        console.error("Erro ao carregar as espécies:", error);
+        document.getElementById('infoMsg').textContent = "Não foi possível carregar os pontos no mapa.";
+      }
+
 
       // Lógica para administradores
       const isAdmin = localStorage.getItem('userRole') === 'admin';
@@ -110,7 +109,6 @@
         document.getElementById('infoMsg').textContent = "Visualizando pontos de espécies. Apenas administradores podem adicionar novos pontos.";
       }
     }
-
   </script>
 
   <!-- Substitua SUA_API_KEY pela sua chave da API Google Maps -->
