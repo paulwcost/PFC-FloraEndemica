@@ -11,6 +11,11 @@ dotenv.config(); // Carrega as variáveis de ambiente do arquivo .env
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.use((req, res, next) => {
+    console.log(`${req.method} ${req.url}`);
+    next();
+});
+
 // Middlewares
 app.use(cors());
 app.use(express.json()); // Para o Express entender dados JSON nas requisições
@@ -70,7 +75,8 @@ app.use(express.static('.'));
 
 
 // Conexão com o MongoDB
-const mongoURI = process.env.MONGO_URI;
+const mongoURI = process.env.MONGO_URI2;
+console.log('Tentando conectar com a URI do MongoDB:', mongoURI); // Adiciona este log
 
 mongoose.connect(mongoURI)
 .then(() => console.log('Conectado ao MongoDB'))

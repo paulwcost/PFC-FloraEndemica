@@ -1,0 +1,356 @@
+/* =========================================
+   PALETA DE CORES FOCADA NO VERDE (FLORA)
+   ========================================= */
+:root {
+    /* Tons de Verde (Primários e Secundários) */
+    --color-primary-green: #2E7D32; /* Verde Escuro Profundo (Para títulos e CTAs) */
+    --color-secondary-green-light: #C8E6C9; /* Verde Pastel/Fundo Claro de Cards */
+    --color-tertiary-green-vibrant: #4CAF50; /* Verde Médio/Vivo (Destaque Principal) */
+    --color-green-dark: #1B5E20; /* Verde Mais Escuro (Hover/Fundo Escuro) */
+
+    /* Tons de Destaque (Inspirado em terra/sol/perigo) */
+    --color-yellow-data: #9ecca1; /* Amarelo Vibrante (Destaque de Dados) */
+    --color-brown-light: #1B5E20; /* Marrom Claro (Para fundos ou detalhes) */
+    --color-red-danger: #1B5E20; /* Vermelho forte para alarme (Corrigido para ser vermelho) */
+    --color-red-light: #9ecca1; /* Vermelho claro para fundo de alarme */
+
+    /* Neutros */
+    --color-background-light: #F9F9F9; /* Fundo geral da seção */
+    --color-text-dark: #333333;
+    --color-text-light: #FFFFFF;
+    --color-border-subtle: #E0E0E0; /* Borda sutil */
+}
+
+/* =========================================
+   ESTILIZAÇÃO GERAL E TIPOGRAFIA
+   (Não alterada, mas incluída para completude)
+   ========================================= */
+body {
+    font-family: 'Arial', sans-serif;
+    color: var(--color-text-dark);
+    line-height: 1.6;
+    background-color: #FFFFFF;
+}
+
+section {
+    padding: 60px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h2 {
+    font-size: 2.4rem;
+    color: var(--color-primary-green);
+    margin-bottom: 30px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.highlight {
+    color: var(--color-tertiary-green-vibrant);
+}
+
+.text-green {
+    color: var(--color-primary-green);
+    font-weight: bold;
+}
+
+.text-red {
+    color: var(--color-red-danger);
+    font-weight: bold;
+}
+
+/* =========================================
+   1. SEÇÃO HERO
+   ========================================= */
+.section-hero {
+    background-color: var(--color-background-light);
+    border-bottom: 5px solid var(--color-secondary-green-light);
+    text-align: center;
+}
+
+.section-hero h1 {
+    font-size: 3rem;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section-hero p {
+    font-size: 1.2rem;
+    max-width: 800px;
+}
+
+.hero-image {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.cta-button-large {
+    background-color: var(--color-tertiary-green-vibrant);
+    border-radius: 8px;
+    padding: 18px 40px;
+    text-decoration: none;
+    color: var(--color-text-light);
+    display: inline-block;
+}
+
+.cta-button-large:hover {
+    background-color: var(--color-green-dark);
+}
+
+/* =========================================
+   2. SEÇÃO PROBLEMA (CARDS: MINIMALISTA, COMPACTO E ORGANIZADO)
+   ========================================= */
+.section-problema {
+    background-color: #FFFFFF;
+    text-align: center;
+}
+
+.problema-intro {
+    font-size: 1.15rem;
+    margin: 0 auto 40px;
+    max-width: 900px;
+}
+
+.data-cards-container {
+    /* Layout para Desktop: 3 Colunas Perfeitas */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 15px; 
+    max-width: 900px; /* Mantém os cards menores e centralizados */
+    margin: 0 auto;
+}
+
+/* Estilo Minimalista e Compacto do Card */
+.data-card {
+    background-color: var(--color-background-light); /* Fundo claro para minimalismo */
+    border-radius: 8px;
+    padding: 15px; 
+    border: 1px solid var(--color-border-subtle); /* Borda sutil, sem sombra pesada */
+    transition: all 0.3s ease;
+    height: 100%; 
+    
+    /* Organização interna: Ícone e Texto */
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start;
+    text-align: left;
+}
+
+.data-card:hover {
+    transform: translateY(-2px); /* Hover sutil */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Sombra suave no hover */
+}
+
+/* Card do Dado Alarmante (Destaque Vermelho/Perigo) */
+.data-card-red {
+    background-color: var(--color-red-light); /* Fundo vermelho pastel */
+    border: 1px solid var(--color-red-danger); /* Borda vermelha forte */
+}
+
+.data-card-red .icon {
+    color: var(--color-red-danger) !important; /* Ícone vermelho */
+}
+
+/* Ícones */
+.data-card .icon {
+    font-size: 1.8rem; /* Ícone pequeno */
+    display: block; /* Ocupa a própria linha no topo */
+    margin-bottom: 5px;
+    color: var(--color-primary-green);
+}
+
+.data-card h3 {
+    font-size: 1rem; /* Título bem pequeno */
+    margin: 0 0 5px 0;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.data-card p {
+    font-size: 0.85rem; /* Texto de descrição menor */
+    margin: 0;
+}
+
+/* =========================================
+   3. SEÇÃO AÇÕES (GRID DE CARDS)
+   ========================================= */
+.section-acoes {
+    background-color: var(--color-background-light);
+}
+
+.acao-cards-grid {
+    display: grid;
+    /* Grid de duas colunas em telas maiores para melhor aproveitamento de espaço */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 40px;
+    padding: 0 50px;
+}
+
+.acao-card {
+    background-color: var(--color-text-light);
+    border-radius: 12px;
+    padding: 40px;
+    text-align: left;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: border 0.3s;
+    border-left: 5px solid var(--color-tertiary-green-vibrant);
+}
+
+.acao-card:nth-child(2n) {
+    border-left: 5px solid var(--color-brown-light); 
+}
+
+.acao-icon {
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin-right: 15px;
+}
+
+.acao-card h3 {
+    font-size: 1.4rem;
+    color: var(--color-primary-green);
+    text-align: left;
+    overflow: hidden;
+    padding-top: 5px;
+    margin-top: 0;
+}
+
+.acao-card p {
+    clear: both;
+    margin-top: 15px;
+}
+
+/* =========================================
+   4. SEÇÃO TECNOLOGIA
+   ========================================= */
+.section-tecnologia {
+    background-color: #FFFFFF;
+}
+
+.tech-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.tech-item {
+    padding: 30px;
+    border-radius: 10px;
+    background-color: var(--color-secondary-green-light);
+    border-bottom: 5px solid var(--color-yellow-data);
+}
+
+.tech-item h3 {
+    color: var(--color-primary-green);
+    text-align: left;
+}
+
+/* =========================================
+   5. SEÇÃO EQUIPE E CTA FINAL
+   ========================================= */
+.section-equipe {
+    background-color: var(--color-background-light);
+}
+
+.equipe-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+.instituicao, .pesquisadores {
+    background-color: var(--color-text-light);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    width: 45%;
+}
+
+.cta-colaboracao {
+    background-color: var(--color-primary-green);
+    color: var(--color-text-light);
+    padding: 50px;
+    border-radius: 10px;
+}
+
+.cta-colaboracao h3 {
+    font-size: 2rem;
+    color: var(--color-text-light);
+}
+
+.cta-colaboracao p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.cta-button-medium {
+    background-color: var(--color-red-danger); /* Alto contraste para o CTA final */
+    padding: 15px 35px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--color-text-light);
+    display: inline-block;
+}
+
+.cta-button-medium:hover {
+    background-color: var(--color-green-dark);
+}
+
+/* =========================================
+   RESPONSIVIDADE GERAL
+   ========================================= */
+@media (max-width: 992px) {
+    /* Telas Médias (Tablets) */
+    .data-cards-container, .tech-container, .equipe-container {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .data-card, .tech-item, .instituicao, .pesquisadores {
+        width: 90% !important;
+        min-width: auto;
+    }
+    
+    .acao-cards-grid {
+        grid-template-columns: 1fr;
+        padding: 0;
+    }
+
+    .section-hero h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    /* Telas Pequenas (Smartphones) */
+    .section-hero h1 {
+        font-size: 2rem;
+    }
+    
+    /* Cards de Ações/Problema (Alinhamento centralizado para Mobile) */
+    .acao-card {
+        text-align: center;
+        padding: 25px;
+    }
+    
+    .acao-icon {
+        float: none;
+        margin: 0 auto 10px;
+    }
+    
+    .acao-card h3 {
+        text-align: center;
+    }
+    
+    /* Ajustes específicos para os cards de dados (Já estão menores, mas garantimos o PADDING reduzido) */
+    .data-card {
+        padding: 12px;
+    }
+}

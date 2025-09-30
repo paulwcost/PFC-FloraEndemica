@@ -7,6 +7,7 @@
     <meta name="description" content="Pesquise espécies nativas do Brasil por palavra-chave. Plataforma de Dados: informações detalhadas e colaboração para conservação. Explore agora!">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="menu.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script defer src="js/script.js"></script>
 </head>
 <body>
@@ -17,11 +18,15 @@
             <span id="titulo-site"></span>
         </div>
         <nav class="main-nav">
-            <ul id="menu-links"></ul>
-            <form id="search-form">
-                <input type="text" id="search-keyword" name="search-keyword" placeholder="Buscar palavra-chave...">
-                <button type="submit">Pesquisar</button>
-            </form>
+            <div id="nav-content">
+                <ul id="menu-links">
+                    <li><a href="admin_login.html">Login</a></li>
+                </ul>
+                <form id="search-form">
+                    <input type="text" id="search-keyword" name="search-keyword" placeholder="Buscar palavra-chave...">
+                    <button type="submit">Pesquisar</button>
+                </form>
+            </div>
             <div class="menu-toggle">
                 <span></span>
                 <span></span>
@@ -50,9 +55,16 @@
         </section>
     </section>
 
+    <section class="map-section">
+        <h2 class="section-title">Mapa de Espécies</h2>
+        <div id="map"></div>
+    </section>
+
     <footer>
         <p id="footer-texto"></p>
     </footer>
 
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script defer src="js/mapa.js"></script>
 </body>
 </html>

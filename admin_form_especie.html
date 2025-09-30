@@ -8,20 +8,104 @@
     <meta name="description" content="Cadastre novas espécies nativas na plataforma. Apenas administradores têm acesso.">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="menu.css">
+    <style>
+        .form-page-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        #formCadastroEspecie {
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Espaçamento consistente entre os elementos do formulário */
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .input-group label {
+            font-weight: bold;
+        }
+
+        .input-group input,
+        .input-group textarea {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        fieldset {
+            border: 1px solid #ddd;
+            padding: 25px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        legend {
+            padding: 0 10px;
+            font-weight: bold;
+            color: #333;
+            font-size: 1.1em;
+        }
+
+        .button-group {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .botao {
+            padding: 12px 25px;
+            border: none;
+            background-color: #333;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        @media (min-width: 600px) {
+            .botao {
+                width: auto;
+            }
+        }
+
+        .botao:hover {
+            background-color: #555;
+        }
+    </style>
 </head>
 <body>
 
-<header>
+    <header>
         <div class="logo">
             <img src="./img/logo.png" alt="Logotipo da Plataforma de Dados de Espécies Nativas do Brasil">
             Plataforma de dados sobre espécies nativas
         </div>
         <nav class="main-nav">
-            <ul id="menu-links">
-                <li><a href="index.html">Inicial</a></li>
-                <li><a href="admin_dashboard.html">Painel Administrativo</a></li>
-                <li><a href="#" id="logout-link">Logout</a></li>
-            </ul>
+            <div id="nav-content">
+                <ul id="menu-links">
+                    <li><a href="index.html">Inicial</a></li>
+                    <li><a href="admin_dashboard.html">Painel Administrativo</a></li>
+                    <li><a href="#" id="logout-link">Logout</a></li>
+                </ul>
+            </div>
             <div class="menu-toggle">
                 <span></span>
                 <span></span>
@@ -30,58 +114,62 @@
         </nav>
     </header>
 
-    <section class="login-container">
+    <section class="form-page-container">
         <h1>Cadastro de Espécie</h1>
 
-       <form id="formCadastroEspecie" class="form-container">
+        <form id="formCadastroEspecie">
+            <input type="hidden" id="id" name="id" value="">
 
+            <fieldset>
+                <legend>Identificação</legend>
+                <div class="input-group">
+                    <label for="nome_popular">Nome Popular:</label>
+                    <input type="text" id="nome_popular" name="nome_popular" required>
+                </div>
+                <div class="input-group">
+                    <label for="nome_cientifico">Nome Científico:</label>
+                    <input type="text" id="nome_cientifico" name="nome_cientifico" required>
+                </div>
+                <div class="input-group">
+                    <label for="familia">Família:</label>
+                    <input type="text" id="familia" name="familia">
+                </div>
+                <div class="input-group">
+                    <label for="status_conservacao">Status de Conservação:</label>
+                    <input type="text" id="status_conservacao" name="status_conservacao">
+                </div>
+            </fieldset>
 
-        <input type="hidden" id="id" name="id" value="">
+            <fieldset>
+                <legend>Detalhes</legend>
+                <div class="input-group">
+                    <label for="caracteristicas_morfologicas">Características Morfológicas:</label>
+                    <textarea id="caracteristicas_morfologicas" name="caracteristicas_morfologicas"></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="descricao">Descrição:</label>
+                    <textarea id="descricao" name="descricao"></textarea>
+                </div>
+            </fieldset>
 
-            <div class="input-group">
-                <label for="nome_popular">Nome Popular:</label>
-                <input type="text" id="nome_popular" name="nome_popular" required>
+            <fieldset>
+                <legend>Localização Geográfica</legend>
+                <div class="input-group">
+                    <label for="latitude">Latitude:</label>
+                    <input type="text" id="latitude" name="latitude" readonly>
+                </div>
+                <div class="input-group">
+                    <label for="longitude">Longitude:</label>
+                    <input type="text" id="longitude" name="longitude" readonly>
+                </div>
+                <div class="button-group">
+                    <button type="button" id="btnSelecionarLocalizacao" class="botao">Selecionar Localização no Mapa</button>
+                </div>
+            </fieldset>
+
+            <div class="button-group">
+                <button type="submit" class="botao">Cadastrar</button>
             </div>
-
-            <div class="input-group">
-                <label for="nome_cientifico">Nome Científico:</label>
-                <input type="text" id="nome_cientifico" name="nome_cientifico" required>
-            </div>
-
-            <div class="input-group">
-                <label for="caracteristicas_morfologicas">Características Morfológicas:</label>
-                <textarea type="text" id="caracteristicas_morfologicas" name="caracteristicas_morfologicas"></textarea>
-            </div>
-
-            <div class="input-group">
-                <label for="familia">Família:</label>
-                <input type="text" id="familia" name="familia">
-            </div>
-
-            <div class="input-group">
-                <label for="status_conservacao">Status de Conservação:</label>
-                <input type="text" id="status_conservacao" name="status_conservacao">
-            </div>
-
-            <div class="input-group">
-                <label for="descricao">Descrição:</label>
-                <textarea id="descricao" name="descricao"></textarea>
-            </div>
-
-
-            <div class="input-group">
-                <label for="latitude">Latitude:</label>
-                <input type="text" id="latitude" name="latitude" readonly>
-            </div>
-
-            <div class="input-group">
-                <label for="longitude">Longitude:</label>
-                <input type="text" id="longitude" name="longitude" readonly>
-            </div>
-
-            <button type="button" id="btnSelecionarLocalizacao" class="botao">Selecionar Localização no Mapa</button>
-
-            <button type="submit" class="botao">Cadastrar</button>
         </form>
     </section>
 
@@ -100,20 +188,20 @@
     </footer>
 
     <script src="js/auth.js"></script>
-    <script>protegerRota();
-    // Exibe o link de logout se autenticado
-    if (getAuthToken()) {
-        document.getElementById('logout-link').style.display = 'inline';
-        document.getElementById('logout-link').onclick = function(e) {
-            e.preventDefault();
-            logout();
-        };
-    }
+    <script>
+        protegerRota();
+        // Exibe o link de logout se autenticado
+        if (getAuthToken()) {
+            document.getElementById('logout-link').style.display = 'inline';
+            document.getElementById('logout-link').onclick = function(e) {
+                e.preventDefault();
+                logout();
+            };
+        }
     </script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="js/admin_form_especie.js"></script>
     <script defer src="js/script.js"></script>
-    <!-- Substitua SUA_API_KEY pela sua chave da API Google Maps -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHbGwLDwUK6rPS6EXiXRU2IXD9ns3CLhw&callback=initAdminMap"></script>
-
 </body>
 </html>

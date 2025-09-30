@@ -2,7 +2,7 @@
 async function carregarEspecies() {
   try {
     // Busca do backend Express/MongoDB
-    const response = await fetch('https://plataforma-de-dados-com-login.onrender.com/especies-locais');    
+    const response = await fetch('/especies-locais');    
     if (!response.ok) throw new Error('Erro ao carregar os dados do banco de dados');
 
     const especies = await response.json();

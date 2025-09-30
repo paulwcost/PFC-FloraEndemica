@@ -4,19 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre Nós | Plataforma de Dados de Espécies Nativas</title>
-    <meta name="description" content="Conheça a equipe, missão e instituições parceiras da Plataforma de Dados de Espécies Nativas.">
+    <meta name="description" content="Conheça a missão, as ações e a tecnologia por trás da Plataforma de Dados sobre Espécies Arbóreas Nativas de Assis Chateaubriand.">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="menu.css">
+    <link rel="stylesheet" href="about.css"> 
 </head>
 <body>
 
     <header>
         <div class="logo">
-            <img id="logo_img" src="./img/logo.png" alt="Logotipo da Plataforma de Dados de Espécies Nativas do Brasil" loading="lazy">
+            <img id="logo_img" src="./img/logo.png" alt="Logotipo da Plataforma de Dados de Espécies Nativas" loading="lazy">
             <span id="titulo-site">Sobre a Plataforma</span>
         </div>
         <nav class="main-nav">
-            <ul id="menu-links"></ul>
+            <div id="nav-content">
+                <ul id="menu-links">
+                    <li><a href="index.html">Inicial</a></li>
+                    <li><a href="catalogo.html">Catálogo</a></li>
+                    <li><a href="cadastro.html">Cadastro</a></li>
+                </ul>
+            </div>
             <div class="menu-toggle">
                 <span></span>
                 <span></span>
@@ -25,47 +32,115 @@
         </nav>
     </header>
 
-    <section class="sobre">
-        <h1>Sobre a Plataforma</h1>
-        <p>A Plataforma de Dados sobre Espécies Nativas tem como propósito central disponibilizar informações técnicas e científicas acerca da flora endêmica de Chateaubriand. O projeto visa contribuir com estratégias eficazes para a conservação e restauração ambiental, fornecendo uma base de dados acessível para pesquisadores, estudantes e instituições ambientais.</p>
-
-        <div class="missao">
-            <h2>Missão</h2>
-            <p>Nosso compromisso é compilar, organizar e divulgar informações confiáveis sobre a vegetação nativa, promovendo o conhecimento científico e auxiliando na formulação de políticas ambientais voltadas à preservação da biodiversidade.</p>
-        </div>
-
-        <div class="instituicoes">
-            <h2>Instituições Parceiras</h2>
-            <p>Este projeto é desenvolvido com o apoio de instituições acadêmicas e ambientais dedicadas à pesquisa e conservação do meio ambiente, garantindo a qualidade e confiabilidade das informações disponibilizadas.</p>
-            <ul>
-                <li>Instituto Federal do Paraná - Campus Assis Chateaubriand</li>
-                <li>Organizações voltadas à conservação ambiental</li>
-                <li>Pesquisadores e especialistas independentes</li>
-            </ul>
-        </div>
-
-        <div class="responsaveis">
-            <h2>Equipe Responsável</h2>
-            <div class="responsavel">
-                <a href="https://www.instagram.com/paulxcost?igsh=MWM3dmdiM2s1aHV4dw==" target="_blank">
-                    <img src="./img/20240525_212925 (1) (1).jpg" alt="Foto de Paulo Fernandes Costa Neto, desenvolvedor da plataforma" loading="lazy">
-                </a>
-                <h3>Paulo Fernandes Costa Neto</h3>
-                <p>Atua no desenvolvimento da plataforma, estruturação do banco de dados e organização das informações científicas. Seu trabalho busca garantir a acessibilidade e confiabilidade do conteúdo disponibilizado.</p>
+    <main>
+        <section class="section-hero">
+            <div class="hero-content">
+                <h1>
+                    Plataforma de Dados sobre Espécies Arbóreas Nativas: 
+                    <span class="highlight">Estratégias para a Conservação e Restauração Local</span>
+                </h1>
+                <p>
+                    Desenvolvida pelo IFPR Campus Cascavel, nossa plataforma é o repositório digital sistematizado da <strong class="text-green">flora endêmica de Assis Chateaubriand</strong>. Nossa missão é preencher a lacuna de dados integrados, apoiando decisivamente ações educativas, científicas e políticas públicas para a conservação.
+                </p>
+                <a href="catalogo.html" class="cta-button-large">Explore as Espécies Cadastradas</a>
             </div>
-            <div class="responsavel">
-                <a href="https://www.instagram.com/mariana.rangel_?igsh=ZnQxbGltdXU4Ymc0&utm_source=qr" target="_blank">
-                    <img src="./img/IMG_1591.jpeg" alt="Foto de Mariana Rangel Fernandes de Souza, colaboradora da plataforma" loading="lazy">
-                </a>
-                <h3>Mariana Rangel Fernandes de Souza</h3>
-                <p>Responsável pela curadoria das informações e aprimoramento da experiência do usuário na plataforma. Seu foco está na apresentação clara e intuitiva dos conteúdos sobre a flora endêmica.</p>
+            <img src="./img/arvore-nativa-impacto.jpg" alt="Grande imagem de uma árvore nativa em Assis Chateaubriand, Paraná." class="hero-image" loading="lazy">
+        </section>
+
+        <hr>
+
+        <section class="section-problema">
+            <h2>O Desafio da Conservação na Flora Chateaubriandense</h2>
+            <p class="problema-intro">A sobrevivência da flora nativa é ameaçada pela intensa pressão antrópica e fragmentação de habitats na região, demandando ação imediata e baseada em dados.</p>
+            <div class="data-cards-container">
+                <div class="data-card">
+                    <span class="icon">🌿</span>
+                    <h3>Perda de Habitat</h3>
+                    <p>A vegetação local foi majoritariamente transformada em áreas agrícolas e pastagens.</p>
+                </div>
+                <div class="data-card data-card-red">
+                    <span class="icon">🔥</span>
+                    <h3>Dados Alarmantes</h3>
+                    <p>O Brasil perdeu <strong class="text-red">33% das suas áreas nativas</strong> em 2023, reforçando a urgência da conservação local (MapBiomas).</p>
+                </div>
+                <div class="data-card">
+                    <span class="icon">❓</span>
+                    <h3>Ausência de Repositório</h3>
+                    <p>A falta de um repositório digital sistematizado dificulta a gestão e o desenvolvimento de políticas públicas eficazes.</p>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <hr>
+
+        <section class="section-acoes">
+            <h2>Nossas Estratégias: Tecnologia, Restauração e Impacto Social</h2>
+            <div class="acao-cards-grid">
+                <div class="acao-card">
+                    <img src="./img/icon-catalogacao.svg" alt="Ícone de catalogação" class="acao-icon">
+                    <h3>Catalogação e Organização</h3>
+                    <p>Coletamos e organizamos informações científicas (revisão bibliográfica e campo) em fichas técnicas, incluindo nome científico, nome popular, descrição morfológica e localização.</p>
+                </div>
+                <div class="acao-card">
+                    <img src="./img/icon-restauracao.svg" alt="Ícone de restauração" class="acao-icon">
+                    <h3>Ações de Restauração</h3>
+                    <p>A plataforma serve de base para projetos de conservação e educação ambiental. Futuramente, planejamos realizar <strong class="text-green">ações sociais de plantio de mudas nativas</strong>, registradas e catalogadas.</p>
+                </div>
+                <div class="acao-card">
+                    <img src="./img/icon-conscientizacao.svg" alt="Ícone de conscientização" class="acao-icon">
+                    <h3>Conscientização Social</h3>
+                    <p>Disponibilizamos o acesso virtual e acessível às informações para aumentar a conscientização da sociedade sobre a importância da flora endêmica.</p>
+                </div>
+                <div class="acao-card">
+                    <img src="./img/icon-politicas.svg" alt="Ícone de políticas públicas" class="acao-icon">
+                    <h3>Apoio a Políticas Públicas</h3>
+                    <p>Nosso banco de dados é uma ferramenta essencial para subsidiar políticas públicas e a tomada de decisão para a conservação.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <section class="section-tecnologia">
+            <h2>Tecnologia a Serviço da Flora</h2>
+            <div class="tech-container">
+                <div class="tech-item">
+                    <h3>Plataforma e Interface</h3>
+                    <p>A plataforma web foi desenvolvida utilizando <strong class="text-green">HTML, CSS e JS (frontend)</strong> e <strong class="text-green">Node.js (backend)</strong>, garantindo uma interface acessível e funcional.</p>
+                </div>
+                <div class="tech-item">
+                    <h3>Banco de Dados Robusto</h3>
+                    <p>A informação é armazenada em um <strong class="text-green">Banco de Dados Funcional (MongoDB)</strong>, permitindo o armazenamento, consulta e inserção de novas espécies.</p>
+                </div>
+                <div class="tech-item">
+                    <h3>Perspectivas Futuras</h3>
+                    <p>O próximo passo é a implementação do <strong class="text-green">georreferenciamento</strong> das árvores, permitindo a visualização espacial da distribuição das espécies nativas no município.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <section class="section-equipe">
+            <h2>Quem Está Por Trás da Iniciativa?</h2>
+            <div class="equipe-container">
+                <div class="instituicao">
+                    <p>O projeto é uma iniciativa do <strong>Instituto Federal do Paraná (IFPR) Campus Assis Chateaubriand</strong>.</p>
+                    <img src="./img/ifpr-logo.png" alt="Logotipo do Instituto Federal do Paraná Campus Cascavel" class="logo-parceiro">
+                </div>
+                <div class="pesquisadores">
+                    <h3>Autores e Desenvolvedores:</h3>
+                    <p>Paulo Fernandes Costa Neto e Mariana Fernandes Rangel de Souza.</p>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer>
-        <p>&copy; 2025 Plataforma de Dados sobre Espécies Nativas - Todos os direitos reservados.</p>
+        <p>&copy; 2025 Plataforma de Dados sobre Espécies Nativas - Todos os direitos reservados. Projeto IFPR Campus Cascavel.</p>
     </footer>
+
     <script defer src="js/script.js"></script>
+    <script defer src="js/menu.js"></script>
 </body>
 </html>
