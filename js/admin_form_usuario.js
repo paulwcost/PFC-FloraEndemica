@@ -49,7 +49,7 @@ form.addEventListener('submit', async function (e) {
     const payload = { username, role };
     if (password) payload.password = password;
     const method = id ? 'PUT' : 'POST';
-    const url = id ? `https://plataforma-de-dados-com-login.onrender.com/users/${id}` : 'https://plataforma-de-dados-com-login.onrender.com/users';
+    const url = id ? `/users/${id}` : '/users';
     try {
         const response = await fetch(url, {
             method,

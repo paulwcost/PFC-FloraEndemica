@@ -3,23 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro | Plataforma de Dados de Espécies Nativas</title>
-    <meta name="description" content="Crie sua conta para acessar funcionalidades exclusivas da Plataforma de Dados de Espécies Nativas.">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="menu.css">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="style.css?v=1.1">
 </head>
 <body>
-        <header>
+           <header>
         <div class="logo">
-            <img id="logo_img" src="./img/logo.png" alt="Logotipo da Plataforma de Dados de Espécies Nativas do Brasil">
+            <img id="logo_img" src="./img/logo.png" alt="Logotipo da Plataforma de Dados de Espécies Nativas do Brasil" loading="lazy">
             <span id="titulo-site"></span>
         </div>
         <nav class="main-nav">
             <div id="nav-content">
                 <ul id="menu-links">
-                    <li><a href="index.html">Inicial</a></li>
-                    <li><a href="cadastro.html">Cadastro</a></li>
+                    <li><a href="admin_login.html">Login</a></li>
                 </ul>
+                
             </div>
             <div class="menu-toggle">
                 <span></span>
@@ -28,6 +26,7 @@
             </div>
         </nav>
     </header>
+    
 
     <main>
         <div class="cadastro-container">
@@ -56,6 +55,22 @@
                     <option value="pesquisador">Pesquisador</option>
                 </select>
 
+                <div class="form-group" id="curriculoLattesGroup" style="display: none;">
+                    <label for="curriculoLattes">Link do Currículo Lattes:</label>
+                    <input type="url" id="curriculoLattes" name="curriculoLattes" placeholder="URL do Currículo Lattes">
+
+                    <label for="areaAtuacao">Área de Atuação:</label>
+                    <select id="areaAtuacao" name="areaAtuacao">
+                        <option value="">Selecione sua área</option>
+                        <option value="botanica">Botânica</option>
+                        <option value="ecologia">Ecologia</option>
+                        <option value="biologia_conservacao">Biologia da Conservação</option>
+                        <option value="engenharia_florestal">Engenharia Florestal</option>
+                        <option value="geografia">Geografia</option>
+                        <option value="outra">Outra</option>
+                    </select>
+                </div>
+
                 <button type="submit" class="botao">Cadastrar</button>
                 <div id="cadastro-erro" style="color: red; display: none; margin-top: 10px;"></div>
             </form>
@@ -67,7 +82,7 @@
     <footer>
         <p>&copy; 2025 Plataforma de Conservação - Todos os direitos reservados.</p>
     </footer>
-    <script src="js/cadastro.js"></script>
+    <script defer src="js/cadastro.js"></script>
     <script defer src="js/script.js"></script>
 </body>
 </html>

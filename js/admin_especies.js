@@ -39,6 +39,22 @@ function renderizarEspecies(especies) {
         `;
         tabela.appendChild(linha);
     });
+
+    filtrarEspecies();
+}
+
+function filtrarEspecies() {
+    const searchTerm = document.getElementById('search-input').value.toLowerCase();
+    const linhas = document.querySelectorAll('#tabela-especies tr');
+
+    linhas.forEach(linha => {
+        const textoLinha = linha.textContent.toLowerCase();
+        if (textoLinha.includes(searchTerm)) {
+            linha.style.display = '';
+        } else {
+            linha.style.display = 'none';
+        }
+    });
 }
 
 function editarEspecie(id) {
@@ -56,7 +72,7 @@ async function excluirEspecie(id) {
     if (!confirmacao) return;
 
     try {
-        const response = await fetch(`https://plataforma-de-dados-com-login.onrender.com/especies-locais/${id}`,
+        const response = await fetch(`/especies-locais/${id}`,
             {
                 method: 'DELETE',
                 headers: {
@@ -73,8 +89,12 @@ async function excluirEspecie(id) {
         carregarEspecies();
     } catch (error) {
         console.error('Erro ao excluir espécie:', error);
-        alert(`Erro: ${error.message}\nVerifique sua conexão ou se a API está online.`);
+        alert(`Erro: ${error.message}
+Verifique sua conexão ou se a API está online.`);
     }
 }
 
-window.addEventListener('DOMContentLoaded', carregarEspecies);
+window.addEventListener('DOMContentLoaded', () => {
+    carregarEspecies();
+    document.getElementById('search-input').addEventListener('keyup', filtrarEspecies);
+});

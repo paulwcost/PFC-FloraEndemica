@@ -1,57 +1,40 @@
-let map;
-let markers = [];
+document.addEventListener('DOMContentLoaded', function () {
+    // Coordenadas de Assis Chateaubriand
+    const centerLat = -24.3839;
+    const centerLng = -53.5222;
 
-// Simulação: verifique se o usuário é admin (substitua por lógica real de autenticação)
-const isAdmin = localStorage.getItem('userRole') === 'admin';
+    // Inicializa o mapa
+    const map = L.map('map').setView([centerLat, centerLng], 13);
 
-function initMap() {
-    // Coordenadas para centralizar o mapa (ex: centro do Brasil)
-    const initialCoords = { lat: -14.235004, lng: -51.92528 };
-    
-    map = new google.maps.Map(document.getElementById("map"), {
-        center: initialCoords,
-        zoom: 5,
-        mapId: 'DEMO_MAP_ID' // Usando um Map ID de demonstração para evitar erros de estilo
+    // Adiciona o tile layer do OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Ícone customizado de árvore
+    const treeIcon = L.divIcon({
+        html: '🌳',
+        className: 'tree-icon',
+        iconSize: [30, 30],
+        iconAnchor: [15, 30]
     });
 
-    if (isAdmin) {
-        document.getElementById('infoMsg').textContent = "Clique no mapa para adicionar um novo marcador.";
-        map.addListener("click", (e) => {
-            addMarker(e.latLng);
-        });
-    } else {
-        document.getElementById('infoMsg').textContent = "Apenas administradores podem adicionar novos pontos no mapa.";
-    }
-    
-    // Exemplo de como carregar marcadores existentes de uma API
-    // fetch('/api/locations').then(res => res.json()).then(locations => {
-    //     locations.forEach(loc => addMarker(new google.maps.LatLng(loc.lat, loc.lng)));
-    // });
-}
-
-function addMarker(location) {
-    const marker = new google.maps.Marker({
-        position: location,
-        map: map,
-        animation: google.maps.Animation.DROP
-    });
-    markers.push(marker);
-
-    // Adiciona um infowindow para exibir as coordenadas
-    const infowindow = new google.maps.InfoWindow({
-        content: `<b>Coordenadas:</b><br>Lat: ${location.lat().toFixed(6)}<br>Lng: ${location.lng().toFixed(6)}`
-    });
-
-    marker.addListener("click", () => {
-        infowindow.open(map, marker);
-    });
-
-    // Lógica para salvar o novo marcador no backend (exemplo)
-    // if(isAdmin) {
-    //     fetch('/api/locations', {
-    //         method: 'POST',
-    //         headers: { 'Content-Type': 'application/json' },
-    //         body: JSON.stringify({ lat: location.lat(), lng: location.lng() })
-    //     });
-    // }
-}
+    // Busca os dados das espécies no backend
+    fetch('http://localhost:3000/especies-locais')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Erro na requisição: ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Adiciona os marcadores para cada espécie
+            data.forEach(especie => {
+                if (especie.latitude && especie.longitude) {
+                    const marker = L.marker([especie.latitude, especie.longitude], { icon: treeIcon }).addTo(map);
+                    marker.bindPopup(`<b>${especie.nome_popular}</b><br>${especie.nome_cientifico}`);
+                }
+            });
+        })
+        .catch(error => console.error('Erro ao buscar dados das espécies:', error));
+});

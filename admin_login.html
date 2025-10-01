@@ -7,6 +7,98 @@
     <meta name="description" content="Área de login para administradores da Plataforma de Dados de Espécies Nativas.">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="menu.css">
+    <style>
+        .login-container {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            margin: 40px auto;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .login-container h2 {
+            color: #1B5E20;
+            margin-bottom: 20px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        #login-form {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        #login-form label {
+            text-align: left;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        #login-form input {
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        #login-form input:focus {
+            border-color: #1B5E20;
+            outline: none;
+        }
+
+        #login-form button {
+            background-color: #1B5E20;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        #login-form button:hover {
+            background-color: #2E7D32;
+        }
+
+        .form-opcoes {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .form-opcoes a {
+            color: #1B5E20;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .form-opcoes a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -30,25 +122,27 @@
         </nav>
     </header>
 
-    <section class="login-container">
-        <h2>Área Administrativa</h2>
-        <form id="login-form">
-            <label for="username">Usuário</label>
-            <input type="text" id="username" name="username" required>
+    <main>
+        <section class="login-container">
+            <h2>Bem-vindo à Área Administrativa</h2>
+            <form id="login-form">
+                <label for="username">Usuário</label>
+                <input type="text" id="username" name="username" placeholder="Digite seu usuário" required>
 
-            <label for="password">Senha</label>
-            <input type="password" id="password" name="password" required>
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
 
-            <div class="form-opcoes">
-                <label><input type="checkbox" name="lembrar"> Lembrar login</label>
-                <a href="#" class="link-pequeno">Esqueci minha senha</a>
-            </div>
+                <div class="form-opcoes">
+                    <label><input type="checkbox" name="lembrar"> Lembrar login</label>
+                    <a href="#" class="link-pequeno">Esqueci minha senha</a>
+                </div>
 
-            <button type="submit">Entrar</button>
-            <div id="login-erro" style="color: red; display: none; margin-top: 10px;"></div>
-        </form>
-        <p style="text-align:center; margin-top:18px;">Não tem uma conta? <a href="cadastro.html">Crie sua conta</a></p>
-    </section>
+                <button type="submit">Entrar</button>
+                <div id="login-erro" style="color: red; display: none; margin-top: 10px;"></div>
+            </form>
+            <p style="margin-top: 18px;">Não tem uma conta? <a href="cadastro.html">Crie sua conta</a></p>
+        </section>
+    </main>
 
     <footer>
         <p>&copy; 2025 Plataforma de Dados - Espécies Nativas</p>

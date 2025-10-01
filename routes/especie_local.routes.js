@@ -27,25 +27,33 @@ router.get('/:id', async (req, res) => {
 
 // POST /especies-locais - Cria uma nova espécie local
 router.post('/', async (req, res) => {
-    const especieLocal = new EspecieLocal(req.body);
     try {
+        if (!req.body.nome_popular || !req.body.nome_cientifico) {
+            return res.status(400).json({ message: 'Campos obrigatórios não preenchidos.' });
+        }
+
+        const especieLocal = new EspecieLocal(req.body);
         const newEspecieLocal = await especieLocal.save();
         res.status(201).json(newEspecieLocal);
     } catch (err) {
-        res.status(400).json({ message: err.message });
+        res.status(500).json({ message: 'Erro ao criar espécie local.', error: err.message });
     }
 });
 
 // PUT /especies-locais/:id - Atualiza uma espécie local existente
 router.put('/:id', async (req, res) => {
     try {
+        if (!req.body.nome_popular || !req.body.nome_cientifico) {
+            return res.status(400).json({ message: 'Campos obrigatórios não preenchidos.' });
+        }
+
         const especieLocal = await EspecieLocal.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!especieLocal) {
-            return res.status(404).json({ message: 'Espécie local não encontrada no PUT por ID' });
+            return res.status(404).json({ message: 'Espécie local não encontrada.' });
         }
         res.json(especieLocal);
     } catch (err) {
-        res.status(400).json({ message: err.message });
+        res.status(500).json({ message: 'Erro ao atualizar espécie local.', error: err.message });
     }
 });
 

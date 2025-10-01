@@ -1,8 +1,10 @@
+const API_BASE_URL = 'http://127.0.0.1:3000'; // Substitua pela URL correta do servidor backend
+
 // Função que carrega o JSON e popula a tela com os dados das espécies
 async function carregarEspecies() {
   try {
     // Busca do backend Express/MongoDB
-    const response = await fetch('/especies-locais');    
+    const response = await fetch(`${API_BASE_URL}/especies-locais`);    
     if (!response.ok) throw new Error('Erro ao carregar os dados do banco de dados');
 
     const especies = await response.json();

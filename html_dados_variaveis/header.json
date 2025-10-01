@@ -12,7 +12,7 @@
         },
         {
             "texto": "Catálogo",
-            "href": "admin_login.html"
+            "href": "catalogo.html"
         },
         {
             "texto": "Metodologia",
@@ -25,10 +25,6 @@
         {
             "texto": "Sobre",
             "href": "sobre.html"
-        },
-        {
-            "texto": "Admin Login",
-            "href": "admin_login.html"
         }
     ]
 }

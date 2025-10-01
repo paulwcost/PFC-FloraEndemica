@@ -37,7 +37,7 @@
             </div>
             
             <div class="form-container">
-                <form action="enviar_contato.php" method="POST" class="contato-form">
+                <form class="contato-form">
                     <div class="input-group">
                         <label for="nome">Nome</label>
                         <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
@@ -72,5 +72,43 @@
         <p>&copy; 2025 Plataforma de Conservação - Todos os direitos reservados.</p>
     </footer>
     <script defer src="js/script.js"></script>
+    <script>
+    document.querySelector('.contato-form').addEventListener('submit', async function (event) {
+        event.preventDefault(); // Impede o envio padrão do formulário
+
+        const nome = document.getElementById('nome').value;
+        const email = document.getElementById('email').value;
+        const mensagem = document.getElementById('mensagem').value;
+
+        try {
+            const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    service_id: 'seu_service_id', // Substitua pelo seu Service ID do EmailJS
+                    template_id: 'seu_template_id', // Substitua pelo seu Template ID do EmailJS
+                    user_id: 'seu_user_id', // Substitua pelo seu User ID do EmailJS
+                    template_params: {
+                        nome: nome,
+                        email: email,
+                        mensagem: mensagem
+                    }
+                })
+            });
+
+            if (response.ok) {
+                alert('Mensagem enviada com sucesso!');
+                document.querySelector('.contato-form').reset();
+            } else {
+                alert('Erro ao enviar a mensagem. Tente novamente mais tarde.');
+            }
+        } catch (error) {
+            console.error('Erro ao enviar a mensagem:', error);
+            alert('Erro ao enviar a mensagem. Verifique sua conexão e tente novamente.');
+        }
+    });
+</script>
 </body>
 </html>

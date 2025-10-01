@@ -23,8 +23,16 @@ const userSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    required: false,
-    unique: false
+    required: true,
+    unique: true
+  },
+  curriculoLattes: {
+    type: String,
+    required: false
+  },
+  areaAtuacao: {
+    type: String,
+    required: false
   }
 });
 

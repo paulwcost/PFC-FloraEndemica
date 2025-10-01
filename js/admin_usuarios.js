@@ -41,7 +41,7 @@ function editarUsuario(id) {
 async function excluirUsuario(id) {
     if (!confirm('Tem certeza que deseja excluir este usuário?')) return;
     try {
-        const response = await fetch(`https://plataforma-de-dados-com-login.onrender.com/users/${id}`, {
+        const response = await fetch(`/users/${id}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': 'Bearer ' + (getAuthToken ? getAuthToken() : localStorage.getItem('authToken'))

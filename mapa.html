@@ -7,22 +7,28 @@
   <meta name="description" content="Visualize e gerencie pontos georreferenciados de espécies nativas do Brasil. Apenas administradores podem adicionar novos pontos.">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="menu.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <img id="logo_img" src="./img/logo.png" alt="Logotipo da Plataforma de Dados de Espécies Nativas do Brasil" loading="lazy">
-      <span id="titulo-site">Mapa Georreferenciado</span>
-    </div>
-    <nav class="main-nav">
-      <ul id="menu-links"></ul>
-      <div class="menu-toggle">
-          <span></span>
-          <span></span>
-          <span></span>
-      </div>
-    </nav>
-  </header>
+<header>
+        <div class="logo">
+            <img id="logo_img" src="./img/logo.png" alt="Logotipo da Plataforma de Dados de Espécies Nativas do Brasil" loading="lazy">
+            <span id="titulo-site"></span>
+        </div>
+        <nav class="main-nav">
+            <div id="nav-content">
+                <ul id="menu-links">
+                    <li><a href="admin_dashboard.html">Painel Admin</a></li>
+                    <li><a href="#" id="logout">Logout</a></li>
+                </ul>
+            </div>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
 
   <main>
     <h1>Mapa Georreferenciado</h1>
@@ -34,84 +40,19 @@
     <p id="footer-texto">&copy; 2025 Plataforma de Dados sobre Espécies Nativas - Todos os direitos reservados.</p>
   </footer>
 
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script defer src="js/mapa.js"></script>
   <script>
-    let map;
+    document.querySelector('.menu-toggle').addEventListener('click', function () {
+        const navContent = document.getElementById('nav-content');
+        navContent.classList.toggle('active');
+    });
 
-    // Define o ícone customizado para os marcadores
-    const treeIcon = {
-      url: 'img/arvore.png',
-      scaledSize: new google.maps.Size(40, 40)
-    };
-
-    // Função para adicionar um marcador no mapa
-    function addMarker(location, nome, descricao) {
-      const marker = new google.maps.Marker({
-        position: location,
-        map: map,
-        title: nome,
-        icon: treeIcon
-      });
-
-      const contentString = `<strong>${nome}</strong><br>${descricao}`;
-      const infowindow = new google.maps.InfoWindow({
-        content: contentString
-      });
-
-      marker.addListener('click', () => {
-        infowindow.open(map, marker);
-      });
-    }
-
-    async function initMap() {
-      // Cria o mapa, centralizado em Assis Chateaubriand
-      map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: -24.3836, lng: -53.5183 },
-        zoom: 12,
-      });
-
-      // Busca os dados das espécies no backend
-      try {
-        const response = await fetch('/especies-locais');
-        if (!response.ok) {
-          throw new Error('Falha ao buscar dados das espécies.');
-        }
-        const especies = await response.json();
-        
-        // Adiciona os marcadores para cada espécie
-        especies.forEach(especie => {
-          if (especie.latitude && especie.longitude) {
-            const location = { lat: especie.latitude, lng: especie.longitude };
-            addMarker(location, especie.nome_popular, especie.nome_cientifico);
-          }
-        });
-      } catch (error) {
-        console.error("Erro ao carregar as espécies:", error);
-        document.getElementById('infoMsg').textContent = "Não foi possível carregar os pontos no mapa.";
-      }
-
-
-      // Lógica para administradores
-      const isAdmin = localStorage.getItem('userRole') === 'admin';
-      if (isAdmin) {
-        document.getElementById('infoMsg').textContent = "Clique no mapa para adicionar um novo ponto.";
-        
-        map.addListener("click", (e) => {
-          const nome = prompt("Digite o nome da espécie:");
-          if (!nome) return; // Cancela se o nome não for inserido
-
-          const descricao = prompt("Digite a descrição da espécie:");
-          if (!descricao) return; // Cancela se a descrição não for inserida
-
-          // Adiciona o novo marcador no mapa
-          addMarker(e.latLng, nome, descricao);
-        });
-      } else {
-        document.getElementById('infoMsg').textContent = "Visualizando pontos de espécies. Apenas administradores podem adicionar novos pontos.";
-      }
-    }
-  </script>
-
-  <!-- Substitua SUA_API_KEY pela sua chave da API Google Maps -->
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHbGwLDwUK6rPS6EXiXRU2IXD9ns3CLhw&callback=initMap"></script>
+    document.getElementById('logout').addEventListener('click', function () {
+        // Lógica para logout (exemplo: limpar localStorage e redirecionar)
+        localStorage.clear();
+        window.location.href = 'index.html';
+    });
+</script>
 </body>
 </html>

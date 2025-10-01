@@ -1,4 +1,4 @@
-fetch('https://plataforma-de-dados-com-login.onrender.com/metodologia')
+fetch('/metodologia')
       .then(response => response.json())
       .then(data => {
         const container = document.getElementById('metodologia');

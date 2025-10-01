@@ -1,4 +1,19 @@
 document.addEventListener("DOMContentLoaded", function () {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navContent = document.getElementById('nav-content');
+
+    if (menuToggle && navContent) {
+        menuToggle.addEventListener('click', function () {
+            navContent.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+    } else {
+        console.warn('Menu toggle or nav content not found on this page.');
+    }
+
+    // demove o segundo listener e chama a função aqui
+    carregarDados();
+
     // Busca por palavra-chave
     const searchForm = document.getElementById("search-form");
     const searchInput = document.getElementById("search-keyword");
@@ -93,7 +108,7 @@ async function exibirEspeciesDaFamilia(familia) {
             especiesList.appendChild(div);
         });
     } catch (err) {
-        especiesList.innerHTML = `<p style=\"color:red\">Erro ao buscar espécies: ${err.message}</p>`;
+        especiesList.innerHTML = `<p style="color:red">Erro ao buscar espécies: ${err.message}</p>`;
     }
 }
 
@@ -270,29 +285,3 @@ async function carregarDados() {
     if (document.getElementById("footer-texto"))
         document.getElementById("footer-texto").innerHTML = footer.texto;
 }
-
-document.addEventListener("DOMContentLoaded", carregarDados);
-
-window.addEventListener('DOMContentLoaded', function() {
-    // MENU SANDUÍCHE
-    const menuToggle = document.getElementById('menu-toggle');
-    const navMenu = document.getElementById('nav-menu');
-    const menuOverlay = document.getElementById('menu-overlay');
-    if (menuToggle && navMenu && menuOverlay) {
-        menuToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            menuOverlay.classList.toggle('active');
-        });
-        menuOverlay.addEventListener('click', function() {
-            navMenu.classList.remove('active');
-            menuOverlay.classList.remove('active');
-        });
-        // Fecha o menu ao clicar em um link
-        navMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', function() {
-                navMenu.classList.remove('active');
-                menuOverlay.classList.remove('active');
-            });
-        });
-    }
-});

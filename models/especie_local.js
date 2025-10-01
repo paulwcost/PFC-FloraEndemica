@@ -7,8 +7,10 @@ const especieLocalSchema = new mongoose.Schema({
     familia: String,
     status_conservacao: String,
     descricao: String,
+    latitude: Number,
+    longitude: Number
 
     // Adicione outros campos conforme a estrutura do seu especie_local.json
 });
 
-module.exports = mongoose.model('EspecieLocal', especieLocalSchema);
+module.exports = mongoose.model('EspecieLocal', especieLocalSchema, 'especie_local');

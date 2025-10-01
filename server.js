@@ -70,6 +70,12 @@ app.use('/metodologia', metodologiaRoutes);
 app.use('/users', userRoutes);
 app.use('/auth', authRoutes);
 
+
+
+app.get('/test', (req, res) => {
+  res.send('Test route is working');
+});
+
 // Servir arquivos estáticos da raiz do projeto (após as rotas da API)
 app.use(express.static('.'));
 
