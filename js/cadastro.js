@@ -22,20 +22,9 @@ if (cadastroForm) {
 
         // Monta o corpo da requisição
         const bodyData = { nome, email, username, password, role };
-        if (role === 'pesquisador') {
-            const curriculo = document.getElementById('curriculoLattes').value;
-            const areaAtuacao = document.getElementById('areaAtuacao').value;
-            if (!curriculo || !areaAtuacao) {
-                erroEl.textContent = 'Pesquisadores devem fornecer o currículo Lattes e a área de atuação.';
-                erroEl.style.display = 'block';
-                return;
-            }
-            bodyData.curriculoLattes = curriculo;
-            bodyData.areaAtuacao = areaAtuacao;
-        }
 
         try {
-            const response = await fetch('http://localhost:3000/auth/cadastro', {
+            const response = await fetch('https://plataforma-de-dados-com-login.onrender.com/auth/cadastro', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(bodyData)

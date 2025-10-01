@@ -11,7 +11,7 @@ if (loginForm) {
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
         try {
-            const response = await fetch('http://localhost:3000/auth/login', {
+            const response = await fetch('https://plataforma-de-dados-com-login.onrender.com/auth/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password })

@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Busca os dados das espécies no backend
-    fetch('http://localhost:3000/especies-locais')
+    fetch('https://plataforma-de-dados-com-login.onrender.com/especies-locais')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`Erro na requisição: ${response.statusText}`);

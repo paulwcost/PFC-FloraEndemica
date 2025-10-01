@@ -10,7 +10,7 @@ formData.append('password', '123456');
 formData.append('role', 'pesquisador');
 formData.append('curriculo', fs.createReadStream('c:\\Users\\Paulo\\Documents\\curriculo.pdf'));
 
-axios.post('http://localhost:3000/cadastro', formData, {
+axios.post('https://plataforma-de-dados-com-login.onrender.com/cadastro', formData, {
     headers: formData.getHeaders(),
 })
 .then(response => {

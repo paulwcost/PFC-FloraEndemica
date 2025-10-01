@@ -1,7 +1,7 @@
 // js/index_loader.js
 
 // Carrega header
-fetch('http://localhost:3000/header')
+fetch('https://plataforma-de-dados-com-login.onrender.com/header')
   .then(res => res.json())
   .then(header => {
     document.getElementById('logo_img').src = header.logo;
@@ -19,7 +19,7 @@ fetch('http://localhost:3000/header')
   });
 
 // Carrega banner
-fetch('http://localhost:3000/banner')
+fetch('https://plataforma-de-dados-com-login.onrender.com/banner')
   .then(res => res.json())
   .then(banners => {
     const banner = Array.isArray(banners) ? banners[0] : banners;
@@ -36,7 +36,7 @@ fetch('http://localhost:3000/banner')
   });
 
 // Carrega destaques
-fetch('http://localhost:3000/destaques')
+fetch('https://plataforma-de-dados-com-login.onrender.com/destaques')
   .then(res => res.json())
   .then(destaques => {
     const section = document.getElementById('destaques-section');
@@ -50,7 +50,7 @@ fetch('http://localhost:3000/destaques')
   });
 
 // Carrega footer
-fetch('http://localhost:3000/footer')
+fetch('https://plataforma-de-dados-com-login.onrender.com/footer')
   .then(res => res.json())
   .then(footer => {
     document.getElementById('footer-texto').textContent = footer.textoCopyright || footer.texto;
