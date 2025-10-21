@@ -25,22 +25,94 @@ function renderizarEspecies(especies) {
 
     especies.forEach(especie => {
         const linha = document.createElement('tr');
-        linha.innerHTML = `
-            <td>${especie.nome_popular}</td>
-            <td>${especie.nome_cientifico}</td>
-            <td>${especie.caracteristicas_morfologicas}</td>
-            <td>${especie.familia}</td>
-            <td>${especie.status_conservacao}</td>
-            <td>${especie.descricao}</td>
-            <td>
-                <button onclick="editarEspecie('${especie._id}')">Editar</button>
-                <button onclick="excluirEspecie('${especie._id}')">Excluir</button>
-            </td>
-        `;
+
+        // Helper para criar célula com texto seguro
+        function criarCelulaTexto(texto, classe) {
+            const td = document.createElement('td');
+            const div = document.createElement('div');
+            div.className = 'campo-texto ' + (classe || '');
+            // garantir que texto nulo/undefined seja string vazia
+            div.textContent = texto || '';
+            td.appendChild(div);
+            return td;
+        }
+
+    // Células simples (nome popular e científico) com classes para estilização
+    const tdNomePopular = criarCelulaTexto(especie.nome_popular);
+    tdNomePopular.classList.add('col-nome-popular');
+    linha.appendChild(tdNomePopular);
+
+    const tdNomeCientifico = criarCelulaTexto(especie.nome_cientifico);
+    tdNomeCientifico.classList.add('col-nome-cientifico');
+    linha.appendChild(tdNomeCientifico);
+
+        // Características morfológicas com botão ver mais
+        const tdCaracteristicas = document.createElement('td');
+        const divCarac = document.createElement('div');
+        divCarac.className = 'campo-texto truncado';
+        divCarac.textContent = especie.caracteristicas_morfologicas || '';
+        tdCaracteristicas.appendChild(divCarac);
+        const btnCarac = document.createElement('button');
+        btnCarac.type = 'button';
+        btnCarac.className = 'btn-ver-mais';
+        btnCarac.textContent = 'ver mais';
+        btnCarac.addEventListener('click', () => toggleVerMais(divCarac, btnCarac));
+        tdCaracteristicas.appendChild(btnCarac);
+        linha.appendChild(tdCaracteristicas);
+
+    // Demais campos simples
+    linha.appendChild(criarCelulaTexto(especie.familia));
+    const tdStatus = criarCelulaTexto(especie.status_conservacao);
+    tdStatus.classList.add('col-status');
+    linha.appendChild(tdStatus);
+
+        // Descrição com botão ver mais
+        const tdDescricao = document.createElement('td');
+        const divDesc = document.createElement('div');
+        divDesc.className = 'campo-texto truncado';
+        divDesc.textContent = especie.descricao || '';
+        tdDescricao.appendChild(divDesc);
+        const btnDesc = document.createElement('button');
+        btnDesc.type = 'button';
+        btnDesc.className = 'btn-ver-mais';
+        btnDesc.textContent = 'ver mais';
+        btnDesc.addEventListener('click', () => toggleVerMais(divDesc, btnDesc));
+        tdDescricao.appendChild(btnDesc);
+        linha.appendChild(tdDescricao);
+
+        // Ações
+        const tdAcoes = document.createElement('td');
+    const btnEditar = document.createElement('button');
+    btnEditar.type = 'button';
+    btnEditar.textContent = 'Editar';
+    btnEditar.className = 'btn-editar botao-acao';
+    btnEditar.addEventListener('click', () => editarEspecie(especie._id));
+    const btnExcluir = document.createElement('button');
+    btnExcluir.type = 'button';
+    btnExcluir.textContent = 'Excluir';
+    btnExcluir.className = 'btn-excluir botao-acao';
+    btnExcluir.addEventListener('click', () => excluirEspecie(especie._id));
+    tdAcoes.classList.add('col-acoes');
+    tdAcoes.appendChild(btnEditar);
+    tdAcoes.appendChild(btnExcluir);
+        linha.appendChild(tdAcoes);
+
         tabela.appendChild(linha);
     });
 
     filtrarEspecies();
+}
+
+// Alterna entre truncado e expandido
+function toggleVerMais(div, botao) {
+    const isTruncado = div.classList.contains('truncado');
+    if (isTruncado) {
+        div.classList.remove('truncado');
+        botao.textContent = 'ver menos';
+    } else {
+        div.classList.add('truncado');
+        botao.textContent = 'ver mais';
+    }
 }
 
 function filtrarEspecies() {

@@ -208,16 +208,102 @@ footer {
 
 /* Estilização dos quadros */
 .quadro {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s;
-    text-align: center;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fbf8 100%);
+    padding: 18px 16px;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(28, 99, 42, 0.06);
+    transition: box-shadow 0.25s ease, transform 0.18s ease;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 170px;
 }
 
 .quadro:hover {
-    transform: translateY(-5px);
+    /* Hover sutil: apenas elevação da sombra, sem translate */
+    box-shadow: 0 10px 26px rgba(28, 99, 42, 0.10);
+}
+
+/* Estilos específicos para a página de catálogo */
+section.catalogo .grid-especies {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    padding: 20px 10px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+section.catalogo h1 {
+    font-size: 32px;
+    color: #154d2e;
+    margin-bottom: 6px;
+}
+
+section.catalogo h2 {
+    font-size: 16px;
+    color: #3e6b4a;
+    font-weight: 500;
+    margin-top: 0;
+    margin-bottom: 18px;
+}
+
+.quadro h3 {
+    font-size: 18px;
+    color: #1b5e20;
+    margin: 0 0 4px 0;
+}
+
+.quadro p {
+    margin: 0;
+    color: #4a4a4a;
+    font-size: 14px;
+    line-height: 1.35;
+}
+
+.quadro .meta {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.quadro .btn-detalhe {
+    background: #43A047;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+/* Bloco de detalhes que fica escondido por padrão */
+.detalhes-especie {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed #e6efe6;
+    color: #3d3d3d;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* pequena transição para dar sensação de desdobrar */
+.detalhes-especie[style*="display: block"] {
+    animation: fadeInDetalhes 220ms ease-out;
+}
+
+@keyframes fadeInDetalhes {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+    section.catalogo h1 { font-size: 26px; }
+    .quadro { min-height: 150px; }
 }
 
 /* Imagens das árvores */
@@ -714,9 +800,10 @@ ul {
     flex-direction: column;
 }
 
-.input-group {
-    margin-bottom: 20px;
-}
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        width: 92vw;
+        max-width: 420px;
+        margin: 18px auto; /* garante espaço vertical e centraliza horizontalmente */
 
 .input-group label {
     font-size: 16px;
@@ -912,6 +999,25 @@ ul {
 
 .card:hover {
     transform: scale(1.05);
+}
+
+/* Para a página admin_lista_especies (section.sobre) centralizar a tabela e remover efeitos de hover que expandem */
+section.sobre {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* centra conteúdo */
+}
+
+/* A tabela que na página de admin tem class="card" deve ficar centrada e sem escala ao passar o mouse */
+section.sobre table.card {
+    width: auto;
+    margin: 0 auto;
+    box-shadow: none; /* mantêm aparência neutra */
+}
+
+/* Anula o efeito de hover para cards dentro da seção sobre (não afeta outros cards do site) */
+section.sobre .card:hover {
+    transform: none !important;
 }
 
 /* Estilização da paginação */
@@ -1319,6 +1425,117 @@ section#lista-familias .card {
     transition: background 0.2s;
 }
 
+/* Espaçamento e largura para colunas específicas */
+.container td.col-acoes {
+    width: 240px; /* espaço extra para botões — aumentado */
+    min-width: 200px;
+}
+.container td.col-status {
+    width: 160px;
+    min-width: 140px;
+}
+
+/* Estilos para botões de ação na tabela */
+.btn-editar {
+    background-color: #4688ca; /* azul */
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-right: 8px;
+}
+.btn-editar:hover { background-color: #1565c0; }
+
+.btn-excluir {
+    background-color: #e53935; /* vermelho */
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+}
+.btn-excluir:hover { background-color: #c62828; }
+
+/* Reforço para pequenos dispositivos: diminuir um pouco o padding dos botões */
+@media (max-width: 600px) {
+    .btn-editar, .btn-excluir {
+        padding: 6px 10px;
+        font-size: 0.95em;
+    }
+    .container td.col-acoes {
+        /* reduzir menos agressivamente para manter usabilidade em telas pequenas */
+        min-width: 140px;
+    }
+}
+
+/* Truncamento de texto para campos longos na tabela (descrição / características) */
+.campo-texto {
+    white-space: normal;
+    overflow: hidden;
+}
+.campo-texto.truncado {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* limita a 3 linhas */
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 4.5em; /* aproximação para 3 linhas */
+}
+
+/* Botão 'ver mais' */
+.btn-ver-mais {
+    margin-left: 8px;
+    background: transparent;
+    color: var(--primary-color, #2c7744);
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.95em;
+    padding: 2px 6px;
+}
+.btn-ver-mais:hover {
+    text-decoration: underline;
+}
+
+/* Ajustes pequenos para que o botão não quebre o layout da tabela */
+.container td .btn-ver-mais {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Regras específicas para a tabela .card (admin_lista_especies.html) */
+.card td.col-acoes {
+    width: 260px; /* mais espaço para os botões nesta tabela */
+    min-width: 220px;
+}
+.card td.col-status {
+    width: 180px;
+    min-width: 160px;
+}
+.card td.col-nome-popular {
+    width: 220px;
+    min-width: 180px;
+}
+.card td.col-nome-cientifico {
+    width: 240px;
+    min-width: 200px;
+}
+.card .btn-editar {
+    background-color: #1976d2;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: none;
+    margin-right: 8px;
+}
+.card .btn-excluir {
+    background-color: #e53935;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: none;
+}
+
 .container th {
     background: #e8f5e9;
     color: #1B5E20;
@@ -1511,6 +1728,21 @@ section#lista-familias .card {
         max-width: 96vw;
         padding: 12px 2vw 12px 2vw;
     }
+}
+
+/* Centralizar verticalmente o painel de login apenas nesta página */
+body.login-page main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 140px); /* considera header + footer aproximados */
+    padding: 20px 0;
+}
+
+/* Garante que o container de login fique centrado e não ocupe 80vh quando dentro do main centralizado */
+body.login-page .login-container {
+    height: auto !important;
+    margin: 0 auto;
 }
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(30px); }
