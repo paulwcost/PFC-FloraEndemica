@@ -801,8 +801,8 @@ ul {
 }
 
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-        width: 92vw;
-        max-width: 420px;
+        width: 82vw;
+        max-width: 320px;
         margin: 18px auto; /* garante espaço vertical e centraliza horizontalmente */
 
 .input-group label {
