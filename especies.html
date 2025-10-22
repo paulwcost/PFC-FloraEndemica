@@ -15,11 +15,26 @@
             <span id="titulo-site">Espécies</span>
         </div>
         <nav class="main-nav">
-            <ul id="menu-links"></ul>
-            <div class="menu-toggle">
+            <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
+            </button>
+            <div id="nav-content">
+                <ul id="menu-links">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="catalogo.html">Catálogo</a></li>
+                    <li><a href="mapa.html">Mapa</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+                <form id="search-form">
+                    <input type="text" id="search-keyword" name="search-keyword" placeholder="Buscar...">
+                    <button type="submit">Pesquisar</button>
+                </form>
+                <div class="nav-actions">
+                    <a href="login.html" class="login-btn">Login</a>
+                </div>
             </div>
         </nav>
     </header>

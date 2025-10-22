@@ -762,35 +762,42 @@ ul {
 
 /* Conteúdo da página de contato */
 .contato-container {
-    background-color: white;
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    margin: 30px auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 900px;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 800px;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+
+@media (min-width: 768px) {
+    .contato-container {
+        grid-template-columns: 1fr 1fr;
+        padding: 40px;
+    }
 }
 
 .contato-header {
-    text-align: center;
-    margin-bottom: 30px;
+    text-align: left;
 }
 
 .contato-header h1 {
-    font-size: 36px;
-    color: #388E3C;
+    font-size: 32px;
+    color: #1B5E20;
+    margin-bottom: 10px;
 }
 
-.contato-header p {
+.contato-header h2 {
     font-size: 18px;
-    color: #757575;
-    line-height: 1.5;
+    color: #555;
+    line-height: 1.6;
+    font-weight: 400;
 }
 
-/* Formulário de Contato */
 .form-container {
     width: 100%;
 }
@@ -798,124 +805,94 @@ ul {
 .contato-form {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    width: 100%;
-    box-sizing: border-box;
+    gap: 20px;
 }
 
-/* Ajustes do cartão/caixa do formulário (corrige bloco de CSS solto anterior) */
-.contato-card {
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-    width: 82vw;
-    max-width: 420px;
-    margin: 18px auto; /* garante espaço vertical e centraliza horizontalmente */
-    padding: 18px;
-    border-radius: 10px;
-    background: #ffffff;
+.input-group {
+    display: flex;
+    flex-direction: column;
 }
 
 .input-group label {
     font-size: 16px;
-    color: #424242;
-    margin-bottom: 5px;
+    color: #333;
+    margin-bottom: 8px;
+    font-weight: 600;
 }
 
 .input-group input,
 .input-group textarea {
     width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 16px;
     background-color: #f9f9f9;
-    color: #424242;
+    color: #333;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .input-group input:focus,
 .input-group textarea:focus {
     outline: none;
     border-color: #388E3C;
+    box-shadow: 0 0 0 3px rgba(56, 142, 60, 0.2);
 }
 
-
-
-.botao:hover {
-    background-color: #2e7d32;
-}
-
-/* Regras específicas para a página de contato em telas pequenas */
-@media (max-width: 600px) {
-    .contato-container {
-        width: 94%;
-        padding: 14px;
-        margin: 18px auto;
-        box-sizing: border-box;
-    }
-
-    .contato-card {
-        width: 100%;
-        max-width: 100%;
-        padding: 12px;
-    }
-
-    .contato-header h1 {
-        font-size: 22px;
-    }
-
-    .contato-header h2 {
-        font-size: 14px;
-    }
-
-    .input-group input,
-    .input-group textarea {
-        font-size: 14px;
-        padding: 10px;
-    }
-
-    .botao, button.botao {
-        width: 100% !important;
-        padding: 12px !important;
-        font-size: 16px !important;
-        border-radius: 8px !important;
-        box-sizing: border-box;
-    }
-
-    .informacoes-contato h2 {
-        font-size: 20px;
-    }
-
-    .informacoes-contato li {
-        font-size: 16px;
-    }
-}
-
-/* Informações de contato adicionais */
-.informacoes-contato {
-    text-align: center;
-    margin-top: 30px;
+.contato-form .botao {
     width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #43A047;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.contato-form .botao:hover {
+    background-color: #2E7D32;
+}
+
+.informacoes-contato {
+    text-align: left;
+    padding: 20px;
+    background-color: #f4f8f4;
+    border-radius: 8px;
 }
 
 .informacoes-contato h2 {
-    font-size: 28px;
-    color: #388E3C;
-    margin-bottom: 20px;
+    font-size: 22px;
+    color: #1B5E20;
+    margin-bottom: 15px;
 }
 
 .informacoes-contato ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .informacoes-contato li {
-    font-size: 18px;
-    color: #424242;
-    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.informacoes-contato li strong {
+    margin-right: 8px;
+    font-weight: 600;
 }
 
 .informacoes-contato li a {
     color: #388E3C;
     text-decoration: none;
+    word-break: break-all;
 }
 
 .informacoes-contato li a:hover {
@@ -923,26 +900,23 @@ ul {
 }
 
 /* Responsividade */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .contato-container {
+        width: 95%;
         padding: 20px;
+        gap: 20px;
     }
 
     .contato-header h1 {
         font-size: 28px;
     }
 
-    .contato-header p {
+    .contato-header h2 {
         font-size: 16px;
     }
 
-    .input-group input,
-    .input-group textarea {
-        font-size: 14px;
-    }
-
-    .botao {
-        font-size: 16px;
+    .informacoes-contato {
+        padding: 15px;
     }
 }
 

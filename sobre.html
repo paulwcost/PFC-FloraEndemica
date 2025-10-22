@@ -14,20 +14,29 @@
     <header>
         <div class="logo">
             <img id="logo_img" src="./img/logo.png" alt="Logotipo da Plataforma de Dados de Espécies Nativas" loading="lazy">
-            <span id="titulo-site">Sobre a Plataforma</span>
+            <span id="titulo-site">Sobre</span>
         </div>
         <nav class="main-nav">
+            <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <div id="nav-content">
                 <ul id="menu-links">
-                    <li><a href="index.html">Inicial</a></li>
+                    <li><a href="index.html">Início</a></li>
                     <li><a href="catalogo.html">Catálogo</a></li>
-                    <li><a href="cadastro.html">Cadastro</a></li>
+                    <li><a href="mapa.html">Mapa</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
+                    <li><a href="contato.html">Contato</a></li>
                 </ul>
-            </div>
-            <div class="menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
+                <form id="search-form">
+                    <input type="text" id="search-keyword" name="search-keyword" placeholder="Buscar...">
+                    <button type="submit">Pesquisar</button>
+                </form>
+                <div class="nav-actions">
+                    <a href="login.html" class="login-btn">Login</a>
+                </div>
             </div>
         </nav>
     </header>
@@ -44,7 +53,6 @@
                 </p>
                 <a href="catalogo.html" class="cta-button-large">Explore as Espécies Cadastradas</a>
             </div>
-            <img src="./img/arvore-nativa-impacto.jpg" alt="Grande imagem de uma árvore nativa em Assis Chateaubriand, Paraná." class="hero-image" loading="lazy">
         </section>
 
         <hr>
@@ -77,22 +85,18 @@
             <h2>Nossas Estratégias: Tecnologia, Restauração e Impacto Social</h2>
             <div class="acao-cards-grid">
                 <div class="acao-card">
-                    <img src="./img/icon-catalogacao.svg" alt="Ícone de catalogação" class="acao-icon">
                     <h3>Catalogação e Organização</h3>
                     <p>Coletamos e organizamos informações científicas (revisão bibliográfica e campo) em fichas técnicas, incluindo nome científico, nome popular, descrição morfológica e localização.</p>
                 </div>
                 <div class="acao-card">
-                    <img src="./img/icon-restauracao.svg" alt="Ícone de restauração" class="acao-icon">
                     <h3>Ações de Restauração</h3>
                     <p>A plataforma serve de base para projetos de conservação e educação ambiental. Futuramente, planejamos realizar <strong class="text-green">ações sociais de plantio de mudas nativas</strong>, registradas e catalogadas.</p>
                 </div>
                 <div class="acao-card">
-                    <img src="./img/icon-conscientizacao.svg" alt="Ícone de conscientização" class="acao-icon">
                     <h3>Conscientização Social</h3>
                     <p>Disponibilizamos o acesso virtual e acessível às informações para aumentar a conscientização da sociedade sobre a importância da flora endêmica.</p>
                 </div>
                 <div class="acao-card">
-                    <img src="./img/icon-politicas.svg" alt="Ícone de políticas públicas" class="acao-icon">
                     <h3>Apoio a Políticas Públicas</h3>
                     <p>Nosso banco de dados é uma ferramenta essencial para subsidiar políticas públicas e a tomada de decisão para a conservação.</p>
                 </div>
@@ -124,13 +128,16 @@
         <section class="section-equipe">
             <h2>Quem Está Por Trás da Iniciativa?</h2>
             <div class="equipe-container">
-                <div class="instituicao">
+                <div class="equipe-card">
+                    <h3>Apoio Institucional</h3>
                     <p>O projeto é uma iniciativa do <strong>Instituto Federal do Paraná (IFPR) Campus Assis Chateaubriand</strong>.</p>
-                    <img src="./img/ifpr-logo.png" alt="Logotipo do Instituto Federal do Paraná Campus Cascavel" class="logo-parceiro">
+                    <img src="./img/img_ifpr.png" alt="Logotipo do Instituto Federal do Paraná" class="logo-ifpr">
+
                 </div>
-                <div class="pesquisadores">
-                    <h3>Autores e Desenvolvedores:</h3>
-                    <p>Paulo Fernandes Costa Neto e Mariana Rangel Fernandes de Souza.</p>
+                <div class="equipe-card">
+                    <h3>Desenvolvedores</h3>
+                    <img src="./img/foto_equipe.jpg" alt="Foto da equipe de desenvolvedores" class="foto-pesquisadores">
+                    <p><strong>Paulo Fernandes Costa Neto</strong> e <strong>Mariana Rangel Fernandes de Souza</strong></p>
                 </div>
             </div>
         </section>

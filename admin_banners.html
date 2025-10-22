@@ -9,23 +9,29 @@
   <link rel="stylesheet" href="menu.css">
 </head>
 <body>
-<header>
+    <header>
         <div class="logo">
-            <img src="./img/logo.png" alt="Logotipo da Plataforma de Dados de Espécies Nativas do Brasil" loading="lazy">
-            <span id="titulo-site">Administração de Banners</span>
+            <img id="logo_img" src="./img/logo.png" alt="Logotipo da Plataforma de Dados de Espécies Nativas do Brasil" loading="lazy">
+            <span id="titulo-site">Banners</span>
         </div>
         <nav class="main-nav">
+            <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <div id="nav-content">
                 <ul id="menu-links">
-                    <li><a href="index.html">Inicial</a></li>
-                    <li><a href="admin_dashboard.html">Painel Administrativo</a></li>
-                    <li><a href="#" id="logout-link">Logout</a></li>
+                    <li><a href="admin_dashboard.html">Dashboard</a></li>
+                    <li><a href="admin_lista_especies.html">Espécies</a></li>
+                    <li><a href="admin_lista_usuarios.html">Usuários</a></li>
+                    <li><a href="admin_banners.html">Banners</a></li>
+                    <li><a href="mapa.html">Mapa</a></li>
+                    <li><a href="index.html">Voltar ao site</a></li>
                 </ul>
-            </div>
-            <div class="menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
+                <div class="nav-actions">
+                    <a href="#" id="logout" class="login-btn">Logout</a>
+                </div>
             </div>
         </nav>
     </header>

@@ -9,10 +9,11 @@
     <link rel="stylesheet" href="menu.css">
 </head>
 <body>
-        <header>
+
+    <header>
         <div class="logo">
             <img id="logo_img" src="./img/logo.png" alt="Logotipo da Plataforma de Dados de Espécies Nativas do Brasil" loading="lazy">
-            <span id="titulo-site">Contato</span>
+            <span id="titulo-site">Área Administrativa</span>
         </div>
         <nav class="main-nav">
             <div id="nav-content">
@@ -33,24 +34,24 @@
         <div class="contato-container">
             <div class="contato-header">
                 <h1>Fale Conosco!</h1>
-                <h2>Tem alguma dúvida ou sugestão? Estamos aqui para ajudar e ouvir sua opinião!</h2>
+                <h2>Tem alguma dúvida, sugestão ou quer colaborar? Estamos aqui para ajudar e ouvir sua opinião! Preencha o formulário ou use um dos canais abaixo.</h2>
             </div>
             
-            <div class="form-container contato-card">
+            <div class="form-container">
                 <form class="contato-form">
                     <div class="input-group">
                         <label for="nome">Nome</label>
-                        <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+                        <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
                     </div>
 
                     <div class="input-group">
                         <label for="email">E-mail</label>
-                        <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+                        <input type="email" id="email" name="email" placeholder="seu.email@exemplo.com" required>
                     </div>
 
                     <div class="input-group">
                         <label for="mensagem">Mensagem</label>
-                        <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem aqui..." rows="5" required></textarea>
+                        <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem aqui..." rows="6" required></textarea>
                     </div>
 
                     <button type="submit" class="botao">Enviar Mensagem</button>
@@ -60,9 +61,9 @@
             <div class="informacoes-contato">
                 <h2>Outras Formas de Contato</h2>
                 <ul>
-                    <li><strong>E-mail:</strong> <a href="mailto:contato@conservacao.com">plataformaespeciesnativas@gmail.com</a></li>
+                    <li><strong>E-mail:</strong> <a href="mailto:plataformaespeciesnativas@gmail.com">plataformaespeciesnativas@gmail.com</a></li>
                     <li><strong>Telefone:</strong> <a href="tel:+554412345678">(44) 1234-5678</a></li>
-                    <li><strong>Endereço:</strong>  Av. Cívica, 475 - Assis Chateaubriand, PR, 85935-000</li>
+                    <li><strong>Endereço:</strong> Av. Cívica, 475 - Assis Chateaubriand, PR, 85935-000</li>
                 </ul>
             </div>
         </div>
@@ -71,44 +72,8 @@
     <footer>
         <p>&copy; 2025 Plataforma de Conservação - Todos os direitos reservados.</p>
     </footer>
-    <script defer src="js/script.js"></script>
-    <script>
-    document.querySelector('.contato-form').addEventListener('submit', async function (event) {
-        event.preventDefault(); // Impede o envio padrão do formulário
 
-        const nome = document.getElementById('nome').value;
-        const email = document.getElementById('email').value;
-        const mensagem = document.getElementById('mensagem').value;
-
-        try {
-            const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    service_id: 'seu_service_id', // Substitua pelo seu Service ID do EmailJS
-                    template_id: 'seu_template_id', // Substitua pelo seu Template ID do EmailJS
-                    user_id: 'seu_user_id', // Substitua pelo seu User ID do EmailJS
-                    template_params: {
-                        nome: nome,
-                        email: email,
-                        mensagem: mensagem
-                    }
-                })
-            });
-
-            if (response.ok) {
-                alert('Mensagem enviada com sucesso!');
-                document.querySelector('.contato-form').reset();
-            } else {
-                alert('Erro ao enviar a mensagem. Tente novamente mais tarde.');
-            }
-        } catch (error) {
-            console.error('Erro ao enviar a mensagem:', error);
-            alert('Erro ao enviar a mensagem. Verifique sua conexão e tente novamente.');
-        }
-    });
-</script>
+    <script defer src="js/menu.js"></script>
+    <script defer src="js/contato.js"></script>
 </body>
 </html>
