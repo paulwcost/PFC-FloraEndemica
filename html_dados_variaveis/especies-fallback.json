@@ -1,0 +1,20 @@
+[
+  {
+    "_id": "fallback-1",
+    "nome_popular": "Ipê-amarelo",
+    "nome_cientifico": "Handroanthus albus",
+    "caracteristicas_morfologicas": "Árvore de médio porte, casca grossa e flores amarelas.",
+    "familia": "Bignoniaceae",
+    "status_conservacao": "Não avaliado",
+    "descricao": "Ipê-amarelo, árvore ornamental e nativa de várias regiões do Brasil."
+  },
+  {
+    "_id": "fallback-2",
+    "nome_popular": "Aroeira",
+    "nome_cientifico": "Myracrodruon urundeuva",
+    "caracteristicas_morfologicas": "Árvore grande, madeira dura e folhagem persistente.",
+    "familia": "Anacardiaceae",
+    "status_conservacao": "Vulnerável",
+    "descricao": "Aroeira, utilizada em restauração e de importância ecológica." 
+  }
+]

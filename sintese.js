@@ -41,19 +41,27 @@ async function carregarEspecies() {
     // Se nem a pública nem a local responderam corretamente, tentar fallback estático
     let especies = null;
     if (response && response.ok) {
-      especies = await response.json();
+      // Verifica se o content-type é JSON; alguns hosts retornam HTML de "wakeup"
+      const ct = response.headers.get('content-type') || '';
+      if (ct.toLowerCase().includes('application/json')) {
+        especies = await response.json();
+      } else {
+        console.warn('Resposta recebida não é JSON (content-type:', ct, '). Tentando fallback estático.');
+        especies = null;
+      }
     } else {
       // tenta arquivo de fallback local dentro do site
       try {
-        const fb = await fetch('html_dados_variaveis/especies-fallback.json');
+        const fallbackUrl = window.location.origin + '/html_dados_variaveis/especies-fallback.json';
+        const fb = await fetch(fallbackUrl);
         if (fb.ok) {
           especies = await fb.json();
-          console.warn('Usando fallback local: html_dados_variaveis/especies-fallback.json');
+          console.warn('Usando fallback local:', fallbackUrl);
         } else {
           const tentativa = [];
           if (publicError) tentativa.push(`pública: ${publicError}`);
           if (localError) tentativa.push(`local: ${localError}`);
-          tentativa.push(`fallback: ${fb.status} ${fb.statusText}`);
+          tentativa.push(`fallback: ${fb.status} ${fb.statusText} (${fallbackUrl})`);
           throw new Error(`Nenhuma API respondeu corretamente. Detalhes: ${tentativa.join(' | ')}`);
         }
       } catch (fbErr) {

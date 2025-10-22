@@ -798,12 +798,21 @@ ul {
 .contato-form {
     display: flex;
     flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-        width: 82vw;
-        max-width: 320px;
-        margin: 18px auto; /* garante espaço vertical e centraliza horizontalmente */
+/* Ajustes do cartão/caixa do formulário (corrige bloco de CSS solto anterior) */
+.contato-card {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    width: 82vw;
+    max-width: 420px;
+    margin: 18px auto; /* garante espaço vertical e centraliza horizontalmente */
+    padding: 18px;
+    border-radius: 10px;
+    background: #ffffff;
+}
 
 .input-group label {
     font-size: 16px;
@@ -832,6 +841,52 @@ ul {
 
 .botao:hover {
     background-color: #2e7d32;
+}
+
+/* Regras específicas para a página de contato em telas pequenas */
+@media (max-width: 600px) {
+    .contato-container {
+        width: 94%;
+        padding: 14px;
+        margin: 18px auto;
+        box-sizing: border-box;
+    }
+
+    .contato-card {
+        width: 100%;
+        max-width: 100%;
+        padding: 12px;
+    }
+
+    .contato-header h1 {
+        font-size: 22px;
+    }
+
+    .contato-header h2 {
+        font-size: 14px;
+    }
+
+    .input-group input,
+    .input-group textarea {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .botao, button.botao {
+        width: 100% !important;
+        padding: 12px !important;
+        font-size: 16px !important;
+        border-radius: 8px !important;
+        box-sizing: border-box;
+    }
+
+    .informacoes-contato h2 {
+        font-size: 20px;
+    }
+
+    .informacoes-contato li {
+        font-size: 16px;
+    }
 }
 
 /* Informações de contato adicionais */
