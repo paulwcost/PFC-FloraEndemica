@@ -36,7 +36,7 @@ if (cadastroForm) {
             }
 
             alert('Cadastro realizado com sucesso! Faça login para acessar.');
-            window.location.href = 'login.html';
+            window.location.href = 'admin_login.html';
         } catch (error) {
             erroEl.textContent = error.message;
             erroEl.style.display = 'block';
