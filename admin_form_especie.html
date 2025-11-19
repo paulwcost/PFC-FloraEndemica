@@ -93,29 +93,21 @@
 </head>
 <body>
 
-    <header>
+     <header>
         <div class="logo">
             <img id="logo_img" src="./img/logo.png" alt="Logotipo da Plataforma de Dados de Espécies Nativas do Brasil" loading="lazy">
-            <span id="titulo-site">Formulário de Espécie</span>
+            <span id="titulo-site">Área Administrativa</span>
         </div>
         <nav class="main-nav">
-            <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
             <div id="nav-content">
                 <ul id="menu-links">
                     <li><a href="admin_dashboard.html">Dashboard</a></li>
-                    <li><a href="admin_lista_especies.html">Espécies</a></li>
-                    <li><a href="admin_lista_usuarios.html">Usuários</a></li>
-                    <li><a href="admin_banners.html">Banners</a></li>
-                    <li><a href="mapa.html">Mapa</a></li>
-                    <li><a href="index.html">Voltar ao site</a></li>
                 </ul>
-                <div class="nav-actions">
-                    <a href="#" id="logout" class="login-btn">Logout</a>
-                </div>
+            </div>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </nav>
     </header>
@@ -198,11 +190,14 @@
         protegerRota();
         // Exibe o link de logout se autenticado
         if (getAuthToken()) {
-            document.getElementById('logout-link').style.display = 'inline';
-            document.getElementById('logout-link').onclick = function(e) {
-                e.preventDefault();
-                logout();
-            };
+            const logoutLink = document.getElementById('logout-link');
+            if (logoutLink) {
+                logoutLink.style.display = 'inline';
+                logoutLink.onclick = function(e) {
+                    e.preventDefault();
+                    logout();
+                };
+            }
         }
     </script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />

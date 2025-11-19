@@ -1,72 +1,64 @@
 const express = require('express');
-const EspecieLocal = require('../models/especie_local');
 const router = express.Router();
+const EspecieLocal = require('../models/especie_local.js');
 
-// GET /especies-locais - Retorna todas as espécies locais
-router.get('/', async (req, res) => {
-    try {
-        const especiesLocais = await EspecieLocal.find();
-        res.json(especiesLocais);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-});
-
-// GET /especies-locais/:id - Retorna uma espécie local específica por ID
-router.get('/:id', async (req, res) => {
-    try {
-        const especieLocal = await EspecieLocal.findById(req.params.id);
-        if (!especieLocal) {
-            return res.status(404).json({ message: 'Espécie local não encontrada no GET por ID' });
-        }
-        res.json(especieLocal);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-});
-
-// POST /especies-locais - Cria uma nova espécie local
+// Rota para criar uma nova espécie (POST)
 router.post('/', async (req, res) => {
     try {
-        if (!req.body.nome_popular || !req.body.nome_cientifico) {
-            return res.status(400).json({ message: 'Campos obrigatórios não preenchidos.' });
-        }
-
-        const especieLocal = new EspecieLocal(req.body);
-        const newEspecieLocal = await especieLocal.save();
-        res.status(201).json(newEspecieLocal);
-    } catch (err) {
-        res.status(500).json({ message: 'Erro ao criar espécie local.', error: err.message });
+        const novaEspecie = new EspecieLocal(req.body);
+        await novaEspecie.save();
+        res.status(201).json(novaEspecie);
+    } catch (error) {
+        res.status(400).json({ message: 'Erro ao criar espécie', error: error.message });
     }
 });
 
-// PUT /especies-locais/:id - Atualiza uma espécie local existente
+// Rota para obter todas as espécies (GET)
+router.get('/', async (req, res) => {
+    try {
+        const especies = await EspecieLocal.find();
+        res.json(especies);
+    } catch (error) {
+        res.status(500).json({ message: 'Erro ao buscar espécies', error: error.message });
+    }
+});
+
+// Rota para obter uma espécie por ID (GET)
+router.get('/:id', async (req, res) => {
+    try {
+        const especie = await EspecieLocal.findById(req.params.id);
+        if (!especie) {
+            return res.status(404).json({ message: 'Espécie não encontrada' });
+        }
+        res.json(especie);
+    } catch (error) {
+        res.status(500).json({ message: 'Erro ao buscar espécie', error: error.message });
+    }
+});
+
+// Rota para atualizar uma espécie por ID (PUT)
 router.put('/:id', async (req, res) => {
     try {
-        if (!req.body.nome_popular || !req.body.nome_cientifico) {
-            return res.status(400).json({ message: 'Campos obrigatórios não preenchidos.' });
+        const especie = await EspecieLocal.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+        if (!especie) {
+            return res.status(404).json({ message: 'Espécie não encontrada' });
         }
-
-        const especieLocal = await EspecieLocal.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        if (!especieLocal) {
-            return res.status(404).json({ message: 'Espécie local não encontrada.' });
-        }
-        res.json(especieLocal);
-    } catch (err) {
-        res.status(500).json({ message: 'Erro ao atualizar espécie local.', error: err.message });
+        res.json(especie);
+    } catch (error) {
+        res.status(400).json({ message: 'Erro ao atualizar espécie', error: error.message });
     }
 });
 
-// DELETE /especies-locais/:id - Deleta uma espécie local
+// Rota para deletar uma espécie por ID (DELETE)
 router.delete('/:id', async (req, res) => {
     try {
-        const especieLocal = await EspecieLocal.findByIdAndDelete(req.params.id);
-        if (!especieLocal) {
-            return res.status(404).json({ message: 'Espécie local não encontrada ao DELETAR por ID' });
+        const especie = await EspecieLocal.findByIdAndDelete(req.params.id);
+        if (!especie) {
+            return res.status(404).json({ message: 'Espécie não encontrada' });
         }
-        res.json({ message: 'Espécie local deletada com sucesso' });
-    } catch (err) {
-        res.status(500).json({ message: err.message });
+        res.json({ message: 'Espécie deletada com sucesso' });
+    } catch (error) {
+        res.status(500).json({ message: 'Erro ao deletar espécie', error: error.message });
     }
 });
 

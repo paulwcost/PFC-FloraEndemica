@@ -6,17 +6,10 @@
             "texto": "Início",
             "href": "index.html"
         },
-        {
-            "texto": "Flora Brasil",
-            "href": "flora_brasil.html"
-        },
+
         {
             "texto": "Catálogo",
             "href": "catalogo.html"
-        },
-        {
-            "texto": "Metodologia",
-            "href": "metodologia.html"
         },
         {
             "texto": "Contato",

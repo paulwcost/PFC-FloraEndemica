@@ -779,6 +779,10 @@ ul {
         grid-template-columns: 1fr 1fr;
         padding: 40px;
     }
+
+    .contato-header {
+        grid-column: 1 / -1;
+    }
 }
 
 .contato-header {
@@ -795,11 +799,12 @@ ul {
     font-size: 18px;
     color: #555;
     line-height: 1.6;
-    font-weight: 400;
+    font-weight: 300;
+    width: 80%;
 }
 
 .form-container {
-    width: 100%;
+    width: 80%;
 }
 
 .contato-form {
@@ -822,7 +827,6 @@ ul {
 
 .input-group input,
 .input-group textarea {
-    width: 100%;
     padding: 12px 15px;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -855,17 +859,18 @@ ul {
 
 .contato-form .botao:hover {
     background-color: #2E7D32;
+    width: 0%;
 }
 
 .informacoes-contato {
     text-align: left;
     padding: 20px;
-    background-color: #f4f8f4;
     border-radius: 8px;
+    width: 70%;
 }
 
 .informacoes-contato h2 {
-    font-size: 22px;
+    font-size: 15px;
     color: #1B5E20;
     margin-bottom: 15px;
 }
@@ -877,7 +882,7 @@ ul {
 }
 
 .informacoes-contato li {
-    font-size: 16px;
+    font-size: 12px;
     color: #333;
     margin-bottom: 12px;
     display: flex;
@@ -2096,7 +2101,8 @@ footer {
 
 #map {
     height: 500px; /* Aumentei a altura */
-    width: 100%;
+    width: 80%;
+    margin: 0 auto;
     border-radius: 12px; /* Bordas mais arredondadas */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Sombra mais pronunciada */
     border: 2px solid #1B5E20; /* Borda com a cor principal */
@@ -2227,4 +2233,62 @@ footer {
     .menu-toggle.active span:nth-child(3) {
         transform: rotate(-45deg) translate(7px, -6px);
     }
+}
+
+/*roading*/
+/* From Uiverse.io by adamgiebl */ 
+.dots-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.dot {
+  height: 20px;
+  width: 20px;
+  margin-right: 10px;
+  border-radius: 10px;
+  background-color: #7bbb85;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.dot:last-child {
+  margin-right: 0;
+}
+
+.dot:nth-child(1) {
+  animation-delay: -0.3s;
+}
+
+.dot:nth-child(2) {
+  animation-delay: -0.1s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.1s;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.8);
+    background-color: #165e21;
+    box-shadow: 0 0 0 0 #7bbb85;
+  }
+
+  50% {
+    transform: scale(1.2);
+    background-color: #0a3b12;
+    box-shadow: 0 0 0 0 #7bbb85;
+  }
+
+  100% {
+    transform: scale(0.8);
+    background-color: #012507;
+    box-shadow: 0 0 0 0 #7bbb85;
+  }
+}
+#loader.hidden {
+  display: none;
 }

@@ -45,8 +45,8 @@ formCadastro.addEventListener('submit', async function (event) {
 
     const metodo = dadosEspecie.id ? 'PUT' : 'POST';
     const url = dadosEspecie.id
-        ? `http://localhost:3000/especies-locais/${dadosEspecie.id}`
-        : 'http://localhost:3000/especies-locais';
+        ? `https://plataforma-de-dados-com-login.onrender.com/especies-locais/${dadosEspecie.id}`
+        : 'https://plataforma-de-dados-com-login.onrender.com/especies-locais';
 
     try {
         const response = await fetch(url, {

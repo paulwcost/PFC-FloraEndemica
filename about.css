@@ -39,7 +39,7 @@ section {
 }
 
 h2 {
-    font-size: 2.4rem;
+    font-size: 2rem;
     color: var(--color-primary-green);
     margin-bottom: 30px;
     font-weight: 700;
@@ -70,7 +70,7 @@ h2 {
 }
 
 .section-hero h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     line-height: 1.2;
     margin-bottom: 20px;
     max-width: 900px;
@@ -211,7 +211,7 @@ h2 {
 }
 
 .acao-card h3 {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     color: var(--color-primary-green);
     text-align: left;
     overflow: hidden;
@@ -283,7 +283,7 @@ h2 {
 }
 
 .equipe-card h3 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: var(--color-primary-green);
     margin-bottom: 20px;
 }
@@ -316,7 +316,7 @@ h2 {
 }
 
 .cta-colaboracao h3 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: var(--color-text-light);
 }
 
@@ -341,54 +341,209 @@ h2 {
 }
 
 /* =========================================
+
    RESPONSIVIDADE GERAL
+
    ========================================= */
+
 @media (max-width: 992px) {
+
     /* Telas Médias (Tablets) */
-    .data-cards-container, .tech-container, .equipe-container {
+
+    .data-cards-container, .tech-container {
+
         grid-template-columns: 1fr;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .data-card, .tech-item, .instituicao, .pesquisadores {
-        width: 90% !important;
-        min-width: auto;
-    }
-    
-    .acao-cards-grid {
-        grid-template-columns: 1fr;
-        padding: 0;
+
     }
 
-    .section-hero h1 {
-        font-size: 2.5rem;
+    
+
+    .acao-cards-grid {
+
+        grid-template-columns: 1fr;
+
+        padding: 0;
+
     }
+
+
+
+        .section-hero h1 {
+
+
+
+            font-size: 2.2rem;
+
+
+
+        }
+
+
+
+    .equipe-container {
+
+        flex-direction: column;
+
+        align-items: center;
+
+    }
+
+
+
+    .equipe-card {
+
+        width: 80%;
+
+    }
+
 }
 
+
+
+@media (max-width: 768px) {
+
+    .data-cards-container {
+
+        grid-template-columns: 1fr; 
+
+    }
+
+
+
+    .tech-container {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+
+    .equipe-card {
+
+        width: 90%;
+
+    }
+
+}
+
+
+
 @media (max-width: 600px) {
+
     /* Telas Pequenas (Smartphones) */
-    .section-hero h1 {
-        font-size: 2rem;
+
+    section {
+
+        padding: 40px 5%;
+
     }
+
+
+
+        h2 {
+
+
+
+            font-size: 1.8rem;
+
+
+
+        }
+
+
+
+        .section-hero h1 {
+
+
+
+            font-size: 1.8rem;
+
+
+
+        }
+
     
-    /* Cards de Ações/Problema (Alinhamento centralizado para Mobile) */
-    .acao-card {
-        text-align: center;
-        padding: 25px;
+
+    .data-cards-container {
+
+        grid-template-columns: 1fr;
+
+        gap: 15px;
+
     }
-    
-    .acao-icon {
-        float: none;
-        margin: 0 auto 10px;
-    }
-    
-    .acao-card h3 {
-        text-align: center;
-    }
-    
-    /* Ajustes específicos para os cards de dados (Já estão menores, mas garantimos o PADDING reduzido) */
+
+
+
     .data-card {
-        padding: 12px;
+
+        padding: 15px;
+
     }
+
+    
+
+    .acao-card {
+
+        text-align: center;
+
+        padding: 25px;
+
+    }
+
+    
+
+    .acao-icon {
+
+        float: none;
+
+        margin: 0 auto 10px;
+
+    }
+
+    
+
+    .acao-card h3 {
+
+        text-align: center;
+
+    }
+
+    
+
+    .tech-item {
+
+        padding: 20px;
+
+    }
+
+
+
+    .equipe-card {
+
+        width: 100%;
+
+        padding: 20px;
+
+    }
+
+
+
+    .cta-colaboracao {
+
+        padding: 30px;
+
+    }
+
+
+
+        .cta-colaboracao h3 {
+
+
+
+            font-size: 1.6rem;
+
+
+
+        }
+
 }

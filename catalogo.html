@@ -7,10 +7,11 @@
   <meta name="description" content="Explore o catálogo de espécies nativas cadastradas na plataforma. Veja detalhes e informações de cada espécie.">
   <link rel="stylesheet" href="style.css"/>
   <link rel="stylesheet" href="menu.css"/>
+  
 </head>
 <body>
 
-    <header>
+     <header>
         <div class="logo">
             <img id="logo_img" src="./img/logo.png" alt="Logotipo da Plataforma de Dados de Espécies Nativas do Brasil" loading="lazy">
             <span id="titulo-site">Área Administrativa</span>
@@ -18,8 +19,7 @@
         <nav class="main-nav">
             <div id="nav-content">
                 <ul id="menu-links">
-                    <li><a href="index.html">Inicial</a></li>
-                    <li><a href="cadastro.html">Cadastro</a></li>
+                    <li><a href="admin_login.html">Login</a></li>
                 </ul>
             </div>
             <div class="menu-toggle">
@@ -34,6 +34,14 @@
     <h1>Catálogo de Espécies</h1>
     <h2>Conheça algumas das principais espécies nativas e suas características.</h2>
 
+    <section id="loader" class="dots-container">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+    </section>
+
     <div class="grid-especies">
       <!-- As espécies serão inseridas aqui via JavaScript -->
     </div>
@@ -43,7 +51,7 @@
     <p>&copy; 2025 Plataforma de Dados - Espécies Nativas</p>
   </footer>
 
-
+  <script src="louding.js"></script>
   <script src="sintese.js"></script>
   <script defer src="js/script.js"></script>
   <script defer src="js/menu.js"></script>

@@ -3,7 +3,7 @@ async function carregarEspecies() {
   const container = document.querySelector('.grid-especies');
   try {
     const response = await fetch('/especies-locais');
-    if (!response.ok) {
+    if (!response.ok) {                           
       throw new Error('Erro ao carregar os dados do banco de dados');
     }
     const especies = await response.json();
