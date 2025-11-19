@@ -844,22 +844,10 @@ ul {
     box-shadow: 0 0 0 3px rgba(56, 142, 60, 0.2);
 }
 
-.contato-form .botao {
-    width: 100%;
-    padding: 15px;
-    font-size: 16px;
-    font-weight: bold;
-    background-color: #43A047;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.contato-form .botao:hover {
-    background-color: #2E7D32;
-    width: 0%;
+.botao-container {
+    width: 90%;
+    display: flex;
+    justify-content: flex-start; /* use center se quiser centralizar */
 }
 
 .informacoes-contato {
