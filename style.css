@@ -843,7 +843,11 @@ ul {
     border-color: #388E3C;
     box-shadow: 0 0 0 3px rgba(56, 142, 60, 0.2);
 }
-
+.botao-container {
+    width: 90%;
+    display: flex;
+    justify-content: flex-start; /* use center se quiser centralizar */
+}
 .botao-container {
     width: 90%;
     display: flex;
