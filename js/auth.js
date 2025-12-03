@@ -11,6 +11,7 @@ if (loginForm) {
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
         try {
+            console.log("Enviando requisição para localhost")
             const response = await fetch('https://plataforma-de-dados-com-login.onrender.com/auth/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
